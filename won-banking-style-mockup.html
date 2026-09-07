@@ -350,296 +350,95 @@
             </div>
           </section>
 
-          <section class="screen history-screen" id="history-screen" aria-labelledby="history-title">
-            <div class="history-top">
-              <div class="page-intro">
-                <div class="eyebrow">TRANSACTIONS</div>
-                <h1 id="history-title">거래내역</h1>
-                <p>내 계좌의 입출금 내역을 한눈에.</p>
-              </div>
-              <div class="history-overview" aria-label="9월 전체 계좌 합계">
-                <div>
-                  <p>이번 달 입금</p>
-                  <strong class="in-total">3,600,000원</strong>
-                </div>
-                <div>
-                  <p>이번 달 출금</p>
-                  <strong>164,000원</strong>
-                </div>
-              </div>
-              <div class="history-filter" role="group" aria-label="거래 유형">
-                <label><input class="sr-only" type="radio" name="history-type" id="history-all"
-                    checked />전체</label><label><input class="sr-only" type="radio" name="history-type"
-                    id="history-in" />입금</label><label><input class="sr-only" type="radio" name="history-type"
-                    id="history-out" />출금</label>
-              </div>
-            </div>
-            <div class="history-month">
-              2026년 9월<span>전체 계좌 · 최신순</span>
-            </div>
-            <section class="day-group" aria-label="2026-09-07">
-              <h2 class="day-heading">오늘 · 9월 7일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail out-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon"><svg class="icon" aria-hidden="true">
-                        <use href="#i-cup" />
-                      </svg></span><span class="transaction-info"><strong>커피 한 잔</strong><small>09:12 ·
-                        체크카드</small></span><span class="transaction-amount">−4,500원<small>4,280,500원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-07 09:12</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>4,280,500원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
+          <section
+                class="screen history-screen"
+                id="history-screen"
+                aria-labelledby="history-title"
+              >
+                <div class="history-top">
+                  <div class="page-intro">
+                    <div class="eyebrow">TRANSACTIONS</div>
+                    <h1 id="history-title">거래내역</h1>
+                    <p>내 계좌의 입출금 내역을 한눈에.</p>
                   </div>
-                </details>
-              </div>
-            </section>
-            <section class="day-group" aria-label="2026-09-06">
-              <h2 class="day-heading">어제 · 9월 6일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail out-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon blue"><svg class="icon" aria-hidden="true">
-                        <use href="#i-arrow-out" />
-                      </svg></span><span class="transaction-info"><strong>이서연</strong><small>18:35 ·
-                        계좌이체</small></span><span class="transaction-amount">−50,000원<small>4,285,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-06 18:35</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>4,285,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
-              </div>
-            </section>
-            <section class="day-group" aria-label="2026-09-05">
-              <h2 class="day-heading">9월 5일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail in-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon green"><svg class="icon" aria-hidden="true">
-                        <use href="#i-arrow-in" />
-                      </svg></span><span class="transaction-info"><strong>9월 급여</strong><small>10:00 ·
-                        입금</small></span><span
-                      class="transaction-amount income">+3,200,000원<small>4,335,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-05 10:00</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>4,335,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
-                <details class="transaction-detail in-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon green"><svg class="icon" aria-hidden="true">
-                        <use href="#i-save" />
-                      </svg></span><span class="transaction-info"><strong>적금 납입</strong><small>09:00 ·
-                        입금</small></span><span
-                      class="transaction-amount income">+300,000원<small>12,000,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>차곡차곡 적금</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1003-245-567890</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-05 09:00</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>12,000,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
-              </div>
-            </section>
-            <section class="day-group" aria-label="2026-09-04">
-              <h2 class="day-heading">9월 4일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail out-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon"><svg class="icon" aria-hidden="true">
-                        <use href="#i-wallet" />
-                      </svg></span><span class="transaction-info"><strong>동네 마트</strong><small>19:42 ·
-                        체크카드</small></span><span class="transaction-amount">−64,500원<small>1,135,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-04 19:42</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>1,135,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
-              </div>
-            </section>
-            <section class="day-group" aria-label="2026-09-03">
-              <h2 class="day-heading">9월 3일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail out-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon"><svg class="icon" aria-hidden="true">
-                        <use href="#i-wallet" />
-                      </svg></span><span class="transaction-info"><strong>교통카드 충전</strong><small>08:05 ·
-                        체크카드</small></span><span class="transaction-amount">−45,000원<small>1,199,500원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-03 08:05</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>1,199,500원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
-              </div>
-            </section>
-            <section class="day-group" aria-label="2026-09-02">
-              <h2 class="day-heading">9월 2일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail in-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon blue"><svg class="icon" aria-hidden="true">
-                        <use href="#i-plane" />
-                      </svg></span><span class="transaction-info"><strong>여행 지원금</strong><small>14:30 ·
-                        입금</small></span><span
-                      class="transaction-amount income">+100,000원<small>2,450,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>여행 모으기</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-456-789012</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-02 14:30</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>2,450,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
-              </div>
-            </section>
-            <p class="history-hint">
-              거래 항목을 누르면 상세 정보를 볼 수 있어요.
-            </p>
-          </section>
+                  <div class="history-overview" aria-label="월간 계좌 합계">
+                    <div>
+                      <p>이번 달 입금</p>
+                      <strong class="in-total" id="history-in-total">0원</strong>
+                    </div>
 
-          <section class="screen menu-screen" id="menu-screen" aria-labelledby="menu-title">
+                    <div>
+                      <p>이번 달 출금</p>
+                      <strong id="history-out-total">0원</strong>
+                    </div>
+                  </div>
+
+                  <!--
+                    계좌 선택 탭이 들어가는 영역
+
+                    app-account.js가 /api/accounts에서 계좌 목록을 받아온 뒤
+                    이 div 내부에 다음과 같은 탭을 자동으로 생성한다.
+
+                    전체 계좌
+                    우리 첫급여통장
+                    우리 SUPER주거래통장
+                    우리 청년도약계좌
+                  -->
+                  <div
+                    class="history-filter account-filter"
+                    id="account-tabs"
+                    role="group"
+                    aria-label="계좌 선택"
+                  ></div>
+                  <div class="history-filter" role="group" aria-label="거래 유형">
+                    <label
+                      ><input
+                        class="sr-only"
+                        type="radio"
+                        name="history-type"
+                        id="history-all"
+                        value="all"
+                        checked
+                      />전체</label
+                    ><label
+                      ><input
+                        class="sr-only"
+                        type="radio"
+                        name="history-type"
+                        id="history-in"
+                        value="in"
+                      />입금</label
+                    ><label
+                      ><input
+                        class="sr-only"
+                        type="radio"
+                        name="history-type"
+                        id="history-out"
+                        value="out"
+                      />출금</label
+                    >
+                  </div>
+                </div>
+                
+                <div class="history-month">
+                  <strong id="history-month-title">2026년 9월</strong>
+                  <span id="history-summary">전체 계좌 · 최신순</span>
+                </div>
+
+              <!--
+                서버에서 받아온 거래내역이 들어가는 영역
+
+                app-account.js의 renderTransactions()가
+                이 div 안에 날짜별 거래내역 HTML을 자동 생성한다.
+              -->
+              <div id="transaction-list"></div> 
+              <p class="history-hint">
+                거래 항목을 누르면 상세 정보를 볼 수 있어요.
+              </p>
+
+            </section> 
+
+              <section class="screen menu-screen" id="menu-screen" aria-labelledby="menu-title">
             <div class="menu-profile">
               <span class="profile-badge" aria-hidden="true">김</span>
               <div>
@@ -739,5 +538,6 @@
 
     <script src="recent.js"></script>
     <script src="transfer.js"></script>
+    <script src="./app-account.js"></script>
   </body>
 </html>
