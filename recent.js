@@ -1,11 +1,10 @@
 fetch("http://localhost:4000/api/transactions?limit=3")
     .then(res => res.json())
     .then(data => {
-      console.log("받아온 데이터:", data);
-      renderTransactions(data);
+      renderRecentTransactions(data);
     });
 
-  function renderTransactions(list) {
+  function renderRecentTransactions(list) {
     const container = document.querySelector(".transaction-list");
     container.innerHTML = list.map(tx => `
       <div class="transaction">
