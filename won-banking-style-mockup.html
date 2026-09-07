@@ -192,36 +192,7 @@
                   </svg></label>
               </div>
               <div class="transaction-list">
-                <div class="transaction">
-                  <span class="transaction-icon"><svg class="icon" aria-hidden="true">
-                      <use href="#i-cup" />
-                    </svg></span>
-                  <div class="transaction-info">
-                    <strong>커피 한 잔</strong><small>09.07 · 체크카드</small>
-                  </div>
-                  <span class="transaction-amount"><span class="unmasked">−4,500원</span><span class="masked">금액
-                      숨김</span></span>
-                </div>
-                <div class="transaction">
-                  <span class="transaction-icon blue"><svg class="icon" aria-hidden="true">
-                      <use href="#i-arrow-out" />
-                    </svg></span>
-                  <div class="transaction-info">
-                    <strong>이서연</strong><small>09.06 · 계좌이체</small>
-                  </div>
-                  <span class="transaction-amount"><span class="unmasked">−50,000원</span><span class="masked">금액
-                      숨김</span></span>
-                </div>
-                <div class="transaction">
-                  <span class="transaction-icon green"><svg class="icon" aria-hidden="true">
-                      <use href="#i-arrow-in" />
-                    </svg></span>
-                  <div class="transaction-info">
-                    <strong>9월 급여</strong><small>09.05 · 입금</small>
-                  </div>
-                  <span class="transaction-amount income"><span class="unmasked">+3,200,000원</span><span
-                      class="masked">금액 숨김</span></span>
-                </div>
+
               </div>
             </div>
           </section>
@@ -431,7 +402,9 @@
                 app-account.js의 renderTransactions()가
                 이 div 안에 날짜별 거래내역 HTML을 자동 생성한다.
               -->
-              <div id="transaction-list"></div> 
+              <div id="transaction-list">
+
+              </div> 
               <p class="history-hint">
                 거래 항목을 누르면 상세 정보를 볼 수 있어요.
               </p>
