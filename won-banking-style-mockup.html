@@ -1,575 +1,356 @@
-  <!doctype html>
-  <html lang="ko">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="theme-color" content="#0067ac" />
-      <meta
-        name="description"
-        content="계좌 조회, 이체, 거래내역 화면을 담은 HTML과 CSS 은행 앱 디자인 목업입니다."
-      />
-      <title>WON 실습뱅킹 — 은행 앱 목업</title>
-      <link rel="stylesheet" href="won-banking-style.mockup.css">
-    </head>
-    <body>
-      <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <symbol id="i-home" viewBox="0 0 24 24">
-            <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z" />
-          </symbol>
-          <symbol id="i-transfer" viewBox="0 0 24 24">
-            <path d="M4 7h15m-4-4 4 4-4 4M20 17H5m4-4-4 4 4 4" />
-          </symbol>
-          <symbol id="i-list" viewBox="0 0 24 24">
-            <rect x="5" y="3" width="14" height="18" rx="3" />
-            <path d="M9 8h6M9 12h6M9 16h4" />
-          </symbol>
-          <symbol id="i-grid" viewBox="0 0 24 24">
-            <rect x="3" y="3" width="7" height="7" rx="2" />
-            <rect x="14" y="3" width="7" height="7" rx="2" />
-            <rect x="3" y="14" width="7" height="7" rx="2" />
-            <rect x="14" y="14" width="7" height="7" rx="2" />
-          </symbol>
-          <symbol id="i-bell" viewBox="0 0 24 24">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" />
-          </symbol>
-          <symbol id="i-menu" viewBox="0 0 24 24">
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </symbol>
-          <symbol id="i-eye" viewBox="0 0 24 24">
-            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
-            <circle cx="12" cy="12" r="3" />
-          </symbol>
-          <symbol id="i-chevron" viewBox="0 0 24 24">
-            <path d="m9 5 7 7-7 7" />
-          </symbol>
-          <symbol id="i-wallet" viewBox="0 0 24 24">
-            <path
-              d="M20 8V5a2 2 0 0 0-2-2L4 6v13a2 2 0 0 0 2 2h14V8H5M20 12h-5v5h5"
-            />
-            <path d="M17 14.5h.01" />
-          </symbol>
-          <symbol id="i-save" viewBox="0 0 24 24">
-            <path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5" />
-          </symbol>
-          <symbol id="i-plane" viewBox="0 0 24 24">
-            <path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13" />
-          </symbol>
-          <symbol id="i-cup" viewBox="0 0 24 24">
-            <path
-              d="M4 8h13v7a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4ZM17 9h2a3 3 0 0 1 0 6h-2M3 22h16M7 2v2M11 2v2"
-            />
-          </symbol>
-          <symbol id="i-arrow-in" viewBox="0 0 24 24">
-            <path d="M12 3v16m-6-6 6 6 6-6" />
-          </symbol>
-          <symbol id="i-arrow-out" viewBox="0 0 24 24">
-            <path d="M12 21V5m-6 6 6-6 6 6" />
-          </symbol>
-          <symbol id="i-check" viewBox="0 0 24 24">
-            <path d="m5 12 4 4L19 6" />
-          </symbol>
-          <symbol id="i-shield" viewBox="0 0 24 24">
-            <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
-            <path d="m8 12 3 3 5-6" />
-          </symbol>
-          <symbol id="i-wifi" viewBox="0 0 24 24">
-            <path
-              d="M2 8a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0M9 16a5 5 0 0 1 6 0M12 20h.01"
-            />
-          </symbol>
-          <symbol id="i-signal" viewBox="0 0 24 24">
-            <path d="M4 19v-3M9 19v-7M14 19V8M19 19V4" stroke-width="3" />
-          </symbol>
-          <symbol id="i-battery" viewBox="0 0 26 18">
-            <rect x="1" y="3" width="21" height="12" rx="3" />
-            <path d="M25 7v4" />
-            <rect
-              x="4"
-              y="6"
-              width="15"
-              height="6"
-              rx="1"
-              fill="currentColor"
-              stroke="none"
-            />
-          </symbol>
-        </defs>
-      </svg>
-      <main class="workspace">
-        <header class="workspace-header">
-          <div class="workspace-brand">
-            <span class="brand-monogram" aria-hidden="true">w</span>
-            <div><strong>WON 실습뱅킹</strong><small>MOBILE BANKING</small></div>
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0067ac" />
+  <meta name="description" content="계좌 조회, 이체, 거래내역 화면을 담은 HTML과 CSS 은행 앱 디자인 목업입니다." />
+  <title>WON 실습뱅킹 — 은행 앱 목업</title>
+  <link rel="stylesheet" href="won-banking-style.mockup.css" />
+  <script defer src="homeAccountList.js"></script>
+</head>
+
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-home" viewBox="0 0 24 24">
+        <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z" />
+      </symbol>
+      <symbol id="i-transfer" viewBox="0 0 24 24">
+        <path d="M4 7h15m-4-4 4 4-4 4M20 17H5m4-4-4 4 4 4" />
+      </symbol>
+      <symbol id="i-list" viewBox="0 0 24 24">
+        <rect x="5" y="3" width="14" height="18" rx="3" />
+        <path d="M9 8h6M9 12h6M9 16h4" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="2" />
+        <rect x="14" y="3" width="7" height="7" rx="2" />
+        <rect x="3" y="14" width="7" height="7" rx="2" />
+        <rect x="14" y="14" width="7" height="7" rx="2" />
+      </symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" />
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24">
+        <path d="m9 5 7 7-7 7" />
+      </symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24">
+        <path d="M20 8V5a2 2 0 0 0-2-2L4 6v13a2 2 0 0 0 2 2h14V8H5M20 12h-5v5h5" />
+        <path d="M17 14.5h.01" />
+      </symbol>
+      <symbol id="i-save" viewBox="0 0 24 24">
+        <path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5" />
+      </symbol>
+      <symbol id="i-plane" viewBox="0 0 24 24">
+        <path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13" />
+      </symbol>
+      <symbol id="i-cup" viewBox="0 0 24 24">
+        <path d="M4 8h13v7a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4ZM17 9h2a3 3 0 0 1 0 6h-2M3 22h16M7 2v2M11 2v2" />
+      </symbol>
+      <symbol id="i-arrow-in" viewBox="0 0 24 24">
+        <path d="M12 3v16m-6-6 6 6 6-6" />
+      </symbol>
+      <symbol id="i-arrow-out" viewBox="0 0 24 24">
+        <path d="M12 21V5m-6 6 6-6 6 6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
+        <path d="m8 12 3 3 5-6" />
+      </symbol>
+      <symbol id="i-wifi" viewBox="0 0 24 24">
+        <path d="M2 8a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0M9 16a5 5 0 0 1 6 0M12 20h.01" />
+      </symbol>
+      <symbol id="i-signal" viewBox="0 0 24 24">
+        <path d="M4 19v-3M9 19v-7M14 19V8M19 19V4" stroke-width="3" />
+      </symbol>
+      <symbol id="i-battery" viewBox="0 0 26 18">
+        <rect x="1" y="3" width="21" height="12" rx="3" />
+        <path d="M25 7v4" />
+        <rect x="4" y="6" width="15" height="6" rx="1" fill="currentColor" stroke="none" />
+      </symbol>
+    </defs>
+  </svg>
+  <main class="workspace">
+    <header class="workspace-header">
+      <div class="workspace-brand">
+        <span class="brand-monogram" aria-hidden="true">w</span>
+        <div><strong>WON 실습뱅킹</strong><small>MOBILE BANKING</small></div>
+      </div>
+      <span class="preview-badge">디자인 목업</span>
+    </header>
+    <div class="stage">
+      <div class="phone" aria-label="은행 앱 목업">
+        <!-- Native radio buttons switch screens with CSS. No JavaScript is used. -->
+        <input class="view-control" type="radio" name="view" id="view-home" checked aria-label="홈 화면" />
+        <input class="view-control" type="radio" name="view" id="view-transfer" aria-label="이체 화면" />
+        <input class="view-control" type="radio" name="view" id="view-history" aria-label="거래내역 화면" />
+        <input class="view-control" type="radio" name="view" id="view-menu" aria-label="전체 메뉴 화면" />
+        <div class="status-bar" aria-hidden="true">
+          <span>9:41</span>
+          <span class="status-icons">
+            <svg class="icon">
+              <use href="#i-signal" />
+            </svg>
+            <svg class="icon">
+              <use href="#i-wifi" />
+            </svg>
+            <svg class="icon battery">
+              <use href="#i-battery" />
+            </svg>
+          </span>
+        </div>
+        <header class="app-header">
+          <div class="app-brand">
+            <span class="wordmark">WON</span><span class="sub-brand">실습뱅킹</span>
           </div>
-          <span class="preview-badge">디자인 목업</span>
+          <div class="header-tools">
+            <label class="icon-action" for="view-menu" aria-label="알림 및 전체 메뉴"><svg class="icon" aria-hidden="true">
+                <use href="#i-bell" />
+              </svg>
+              <i class="notification-dot"></i>
+            </label>
+            <label class="icon-action" for="view-menu" aria-label="전체 메뉴">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-menu" />
+              </svg>
+            </label>
+          </div>
         </header>
-        <div class="stage">
-          <div class="phone" aria-label="은행 앱 목업">
-            <!-- Native radio buttons switch screens with CSS. No JavaScript is used. -->
-            <input
-              class="view-control"
-              type="radio"
-              name="view"
-              id="view-home"
-              checked
-              aria-label="홈 화면"
-            />
-            <input
-              class="view-control"
-              type="radio"
-              name="view"
-              id="view-transfer"
-              aria-label="이체 화면"
-            />
-            <input
-              class="view-control"
-              type="radio"
-              name="view"
-              id="view-history"
-              aria-label="거래내역 화면"
-            />
-            <input
-              class="view-control"
-              type="radio"
-              name="view"
-              id="view-menu"
-              aria-label="전체 메뉴 화면"
-            />
-            <div class="status-bar" aria-hidden="true">
-              <span>9:41</span
-              ><span class="status-icons"
-                ><svg class="icon"><use href="#i-signal" /></svg
-                ><svg class="icon"><use href="#i-wifi" /></svg
-                ><svg class="icon battery"><use href="#i-battery" /></svg
-              ></span>
+        <div class="viewports">
+          <section class="screen home-screen" id="home-screen" aria-labelledby="home-title">
+            <div class="home-top">
+              <div class="greeting">
+                <div>
+                  <h1 id="home-title">민준님, 안녕하세요</h1>
+                  <p>오늘도 든든한 하루 보내세요.</p>
+                </div>
+                <span class="profile-badge" aria-hidden="true">김</span>
+              </div>
+              <div class="asset-card">
+                <div class="asset-card-top">
+                  <p>나의 총 자산</p>
+                  <label class="privacy-control"><input class="sr-only" id="hide-balances" type="checkbox"
+                      aria-label="홈 화면 잔액 숨기기" /><svg class="icon" aria-hidden="true">
+                      <use href="#i-eye" />
+                    </svg><span class="unmasked">숨기기</span><span class="masked">보기</span></label>
+                </div>
+                <div class="asset-value">
+                  <span class="unmasked">18,730,500<span class="unit">원</span></span><span class="masked">금액 숨김</span>
+                </div>
+                <div class="asset-footer">
+                  <span>내 계좌 3개</span><label for="view-history">전체 계좌 보기
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-chevron" />
+                    </svg></label>
+                </div>
+              </div>
+              <div class="quick-menu" aria-label="빠른 메뉴">
+                <label for="view-transfer"><span class="quick-icon"><svg class="icon" aria-hidden="true">
+                      <use href="#i-transfer" />
+                    </svg></span>이체</label><label for="view-history"><span class="quick-icon"><svg class="icon"
+                      aria-hidden="true">
+                      <use href="#i-list" />
+                    </svg></span>거래내역</label><label for="view-menu"><span class="quick-icon"><svg class="icon"
+                      aria-hidden="true">
+                      <use href="#i-wallet" />
+                    </svg></span>내 계좌</label><label for="view-menu"><span class="quick-icon"><svg class="icon"
+                      aria-hidden="true">
+                      <use href="#i-grid" />
+                    </svg></span>전체</label>
+              </div>
             </div>
-            <header class="app-header">
-              <div class="app-brand">
-                <span class="wordmark">WON</span
-                ><span class="sub-brand">실습뱅킹</span>
+            <div class="section">
+              <div class="section-heading">
+                <h2>내 계좌 <span>3</span></h2>
+                <label class="text-link" for="view-menu">관리
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron" />
+                  </svg></label>
               </div>
-              <div class="header-tools">
-                <label
-                  class="icon-action"
-                  for="view-menu"
-                  aria-label="알림 및 전체 메뉴"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-bell" /></svg
-                  ><i class="notification-dot"></i></label
-                ><label class="icon-action" for="view-menu" aria-label="전체 메뉴"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-menu" /></svg
-                ></label>
+              <div class="account-list">
+                
               </div>
-            </header>
-            <div class="viewports">
-              <section
-                class="screen home-screen"
-                id="home-screen"
-                aria-labelledby="home-title"
-              >
-                <div class="home-top">
-                  <div class="greeting">
-                    <div>
-                      <h1 id="home-title">민준님, 안녕하세요</h1>
-                      <p>오늘도 든든한 하루 보내세요.</p>
-                    </div>
-                    <span class="profile-badge" aria-hidden="true">김</span>
+            </div>
+            <div class="section">
+              <div class="section-heading">
+                <h2>최근 거래</h2>
+                <label class="text-link" for="view-history">전체보기
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron" />
+                  </svg></label>
+              </div>
+              <div class="transaction-list">
+                <div class="transaction">
+                  <span class="transaction-icon"><svg class="icon" aria-hidden="true">
+                      <use href="#i-cup" />
+                    </svg></span>
+                  <div class="transaction-info">
+                    <strong>커피 한 잔</strong><small>09.07 · 체크카드</small>
                   </div>
-                  <div class="asset-card">
-                    <div class="asset-card-top">
-                      <p>나의 총 자산</p>
-                      <label class="privacy-control"
-                        ><input
-                          class="sr-only"
-                          id="hide-balances"
-                          type="checkbox"
-                          aria-label="홈 화면 잔액 숨기기"
-                        /><svg class="icon" aria-hidden="true">
-                          <use href="#i-eye" /></svg
-                        ><span class="unmasked">숨기기</span
-                        ><span class="masked">보기</span></label
-                      >
-                    </div>
-                    <div class="asset-value">
-                      <span class="unmasked"
-                        >18,730,500<span class="unit">원</span></span
-                      ><span class="masked">금액 숨김</span>
-                    </div>
-                    <div class="asset-footer">
-                      <span>내 계좌 3개</span
-                      ><label for="view-history"
-                        >전체 계좌 보기
-                        <svg class="icon" aria-hidden="true">
-                          <use href="#i-chevron" /></svg
-                      ></label>
-                    </div>
-                  </div>
-                  <div class="quick-menu" aria-label="빠른 메뉴">
-                    <label for="view-transfer"
-                      ><span class="quick-icon"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-transfer" /></svg></span
-                      >이체</label
-                    ><label for="view-history"
-                      ><span class="quick-icon"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-list" /></svg></span
-                      >거래내역</label
-                    ><label for="view-menu"
-                      ><span class="quick-icon"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-wallet" /></svg></span
-                      >내 계좌</label
-                    ><label for="view-menu"
-                      ><span class="quick-icon"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-grid" /></svg></span
-                      >전체</label
-                    >
-                  </div>
+                  <span class="transaction-amount"><span class="unmasked">−4,500원</span><span class="masked">금액
+                      숨김</span></span>
                 </div>
-                <div class="section">
-                  <div class="section-heading">
-                    <h2>내 계좌 <span>3</span></h2>
-                    <label class="text-link" for="view-menu"
-                      >관리
-                      <svg class="icon" aria-hidden="true">
-                        <use href="#i-chevron" /></svg
-                    ></label>
+                <div class="transaction">
+                  <span class="transaction-icon blue"><svg class="icon" aria-hidden="true">
+                      <use href="#i-arrow-out" />
+                    </svg></span>
+                  <div class="transaction-info">
+                    <strong>이서연</strong><small>09.06 · 계좌이체</small>
                   </div>
-                  <div class="account-list">
-                    <article class="account-card">
-                      <div class="account-title">
-                        <span class="bank-icon" aria-hidden="true">W</span>
-                        <div class="account-info">
-                          <h3>WON 주거래 통장</h3>
-                          <p>1002-123-456789</p>
-                        </div>
-                        <svg class="icon" aria-hidden="true">
-                          <use href="#i-chevron" />
-                        </svg>
-                      </div>
-                      <div class="account-bottom">
-                        <span class="account-balance"
-                          ><span class="unmasked">4,280,500<small>원</small></span
-                          ><span class="masked">금액 숨김</span></span
-                        ><label class="small-button" for="view-transfer"
-                          >이체</label
-                        >
-                      </div>
-                    </article>
-                    <article class="account-card compact">
-                      <span class="bank-icon green" aria-hidden="true"
-                        ><svg class="icon"><use href="#i-save" /></svg
-                      ></span>
-                      <div class="account-info">
-                        <h3>차곡차곡 적금</h3>
-                        <p>정기적금</p>
-                      </div>
-                      <span class="account-balance"
-                        ><span class="unmasked">12,000,000<small>원</small></span
-                        ><span class="masked">금액 숨김</span></span
-                      >
-                    </article>
-                    <article class="account-card compact">
-                      <span class="bank-icon purple" aria-hidden="true"
-                        ><svg class="icon"><use href="#i-plane" /></svg
-                      ></span>
-                      <div class="account-info">
-                        <h3>여행 모으기</h3>
-                        <p>입출금 통장</p>
-                      </div>
-                      <span class="account-balance"
-                        ><span class="unmasked">2,450,000<small>원</small></span
-                        ><span class="masked">금액 숨김</span></span
-                      >
-                    </article>
-                  </div>
+                  <span class="transaction-amount"><span class="unmasked">−50,000원</span><span class="masked">금액
+                      숨김</span></span>
                 </div>
-                <div class="section">
-                  <div class="section-heading">
-                    <h2>최근 거래</h2>
-                    <label class="text-link" for="view-history"
-                      >전체보기
-                      <svg class="icon" aria-hidden="true">
-                        <use href="#i-chevron" /></svg
-                    ></label>
+                <div class="transaction">
+                  <span class="transaction-icon green"><svg class="icon" aria-hidden="true">
+                      <use href="#i-arrow-in" />
+                    </svg></span>
+                  <div class="transaction-info">
+                    <strong>9월 급여</strong><small>09.05 · 입금</small>
                   </div>
-                  <div class="transaction-list">
-                    <div class="transaction">
-                      <span class="transaction-icon"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-cup" /></svg
-                      ></span>
-                      <div class="transaction-info">
-                        <strong>커피 한 잔</strong><small>09.07 · 체크카드</small>
-                      </div>
-                      <span class="transaction-amount"
-                        ><span class="unmasked">−4,500원</span
-                        ><span class="masked">금액 숨김</span></span
-                      >
-                    </div>
-                    <div class="transaction">
-                      <span class="transaction-icon blue"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-arrow-out" /></svg
-                      ></span>
-                      <div class="transaction-info">
-                        <strong>이서연</strong><small>09.06 · 계좌이체</small>
-                      </div>
-                      <span class="transaction-amount"
-                        ><span class="unmasked">−50,000원</span
-                        ><span class="masked">금액 숨김</span></span
-                      >
-                    </div>
-                    <div class="transaction">
-                      <span class="transaction-icon green"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-arrow-in" /></svg
-                      ></span>
-                      <div class="transaction-info">
-                        <strong>9월 급여</strong><small>09.05 · 입금</small>
-                      </div>
-                      <span class="transaction-amount income"
-                        ><span class="unmasked">+3,200,000원</span
-                        ><span class="masked">금액 숨김</span></span
-                      >
-                    </div>
-                  </div>
+                  <span class="transaction-amount income"><span class="unmasked">+3,200,000원</span><span
+                      class="masked">금액 숨김</span></span>
                 </div>
-              </section>
+              </div>
+            </div>
+          </section>
 
-              <section
-                class="screen transfer-screen"
-                id="transfer-screen"
-                aria-labelledby="transfer-title"
-              >
-                <input
-                  class="sr-only"
-                  type="radio"
-                  name="transfer-step"
-                  id="step-info"
-                  checked
-                  aria-label="이체 정보 입력 화면"
-                />
-                <input
-                  class="sr-only"
-                  type="radio"
-                  name="transfer-step"
-                  id="step-review"
-                  aria-label="이체 내용 확인 화면"
-                />
-                <input
-                  class="sr-only"
-                  type="radio"
-                  name="transfer-step"
-                  id="step-done"
-                  aria-label="이체 완료 예시 화면"
-                />
-                <div class="page-intro">
-                  <div class="eyebrow">TRANSFER</div>
-                  <div class="page-title-row">
-                    <h1 id="transfer-title">계좌이체</h1>
-                    <span class="sample-tag">샘플 이체</span>
+          <section class="screen transfer-screen" id="transfer-screen" aria-labelledby="transfer-title">
+            <input class="sr-only" type="radio" name="transfer-step" id="step-info" checked aria-label="이체 정보 입력 화면" />
+            <input class="sr-only" type="radio" name="transfer-step" id="step-review" aria-label="이체 내용 확인 화면" />
+            <input class="sr-only" type="radio" name="transfer-step" id="step-done" aria-label="이체 완료 예시 화면" />
+            <div class="page-intro">
+              <div class="eyebrow">TRANSFER</div>
+              <div class="page-title-row">
+                <h1 id="transfer-title">계좌이체</h1>
+                <span class="sample-tag">샘플 이체</span>
+              </div>
+            </div>
+            <div class="flow-progress" aria-label="이체 단계">
+              <label for="step-info"><b>1</b>정보 입력</label><label for="step-review"><b>2</b>내용 확인</label><label
+                for="step-done"><b>3</b>완료</label>
+            </div>
+            <div class="flow-body">
+              <div class="flow-panel transfer-info">
+                <h2>누구에게 보낼까요?</h2>
+                <p class="supporting">받는 분과 보낼 금액을 확인해 주세요.</p>
+                <div class="field">
+                  <label class="field-title" for="from-account">출금 계좌</label>
+                  <div class="withdraw-account">
+                    <span class="bank-icon" aria-hidden="true">W</span>
+                    <div class="account-info">
+                      <select class="account-select" id="from-account">
+                        <!-- GET /api/accounts 결과로 JS가 채웁니다 -->
+                      </select>
+                      <p id="from-balance">출금 가능 -원</p>
+                    </div>
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-wallet" />
+                    </svg>
                   </div>
                 </div>
-                <div class="flow-progress" aria-label="이체 단계">
-                  <label for="step-info"><b>1</b>정보 입력</label
-                  ><label for="step-review"><b>2</b>내용 확인</label
-                  ><label for="step-done"><b>3</b>완료</label>
-                </div>
-                <div class="flow-body">
-                  <div class="flow-panel transfer-info">
-                    <h2>누구에게 보낼까요?</h2>
-                    <p class="supporting">받는 분과 보낼 금액을 확인해 주세요.</p>
-                    <div class="field">
-                      <div class="field-title">출금 계좌</div>
-                      <div class="withdraw-account">
-                        <span class="bank-icon" aria-hidden="true">W</span>
-                        <div class="account-info">
-                          <h3>WON 주거래 통장</h3>
-                          <p>출금 가능 4,280,500원</p>
-                        </div>
-                        <svg class="icon" aria-hidden="true">
-                          <use href="#i-wallet" />
-                        </svg>
-                      </div>
+                <div class="field">
+                  <label class="field-title" for="recipient-account">받는 계좌</label>
+                  <div class="recipient-card">
+                    <div class="recipient-bank">
+                      <select class="bank-select" id="recipient-bank" aria-label="받는 은행">
+                        <!-- 우리 / 국민 / 신한 / 하나 / 카카오뱅크 — JS가 채웁니다 -->
+                      </select>
                     </div>
-                    <div class="field">
-                      <label class="field-title" for="recipient-account"
-                        >받는 계좌<small>예시 계좌</small></label
-                      >
-                      <div class="recipient-card">
-                        <div class="recipient-bank">
-                          <span class="bank-icon" aria-hidden="true">W</span
-                          >우리은행
-                        </div>
-                        <input
-                          class="readonly-account"
-                          id="recipient-account"
-                          type="text"
-                          value="1002-987-654321"
-                          readonly
-                        />
-                        <div class="owner-verified">
-                          <svg class="icon" aria-hidden="true">
-                            <use href="#i-check" /></svg
-                          >이서연님
-                        </div>
-                      </div>
+                    <div class="account-row">
+                      <input class="account-input" id="recipient-account" type="text" inputmode="numeric"
+                        autocomplete="off" maxlength="14" placeholder="- 없이 숫자만 입력 (예: 1002123456789)" />
+                      <button type="button" class="verify-button" id="btn-verify">확인</button>
                     </div>
-                    <div class="field">
-                      <div class="field-title" id="amount-title">보낼 금액</div>
-                      <div class="amount-surface">
-                        <div class="amount-display">
-                          <span class="money-10000">10,000</span
-                          ><span class="money-50000">50,000</span
-                          ><span class="money-100000">100,000</span
-                          ><small>원</small>
-                        </div>
-                        <div class="amount-caption">
-                          아래에서 예시 금액을 선택해 주세요.
-                        </div>
-                      </div>
-                      <div
-                        class="amount-options"
-                        role="group"
-                        aria-labelledby="amount-title"
-                      >
-                        <label
-                          ><input
-                            class="sr-only"
-                            type="radio"
-                            name="amount"
-                            id="amount-10000"
-                          />1만 원</label
-                        ><label
-                          ><input
-                            class="sr-only"
-                            type="radio"
-                            name="amount"
-                            id="amount-50000"
-                            checked
-                          />5만 원</label
-                        ><label
-                          ><input
-                            class="sr-only"
-                            type="radio"
-                            name="amount"
-                            id="amount-100000"
-                          />10만 원</label
-                        >
-                      </div>
-                    </div>
-                    <div class="fee-row">
-                      <span>이체 수수료</span><strong>무료</strong>
-                    </div>
-                    <label class="primary-button" for="step-review">다음</label>
-                    <p class="flow-footnote">
-                      체험용 예시이며 실제 계좌 잔액은 변경되지 않아요.
-                    </p>
-                  </div>
-                  <div class="flow-panel transfer-review">
-                    <div class="review-recipient">
-                      <span class="recipient-avatar" aria-hidden="true">이</span>
-                      <h2>
-                        이서연님에게<br /><strong
-                          ><span class="money-10000">10,000</span
-                          ><span class="money-50000">50,000</span
-                          ><span class="money-100000">100,000</span>원</strong
-                        >을 보낼까요?
-                      </h2>
-                      <p>우리은행 · 1002-987-654321</p>
-                    </div>
-                    <div class="detail-card">
-                      <dl>
-                        <div class="detail-line">
-                          <dt>출금 계좌</dt>
-                          <dd>WON 주거래 통장</dd>
-                        </div>
-                        <div class="detail-line">
-                          <dt>받는 분</dt>
-                          <dd>이서연</dd>
-                        </div>
-                        <div class="detail-line">
-                          <dt>내 통장 표시</dt>
-                          <dd>이서연</dd>
-                        </div>
-                        <div class="detail-line">
-                          <dt>수수료</dt>
-                          <dd>0원</dd>
-                        </div>
-                        <div class="detail-line total">
-                          <dt>총 출금 금액</dt>
-                          <dd>
-                            <span class="money-10000">10,000</span
-                            ><span class="money-50000">50,000</span
-                            ><span class="money-100000">100,000</span>원
-                          </dd>
-                        </div>
-                      </dl>
-                    </div>
-                    <label class="primary-button" for="step-done"
-                      >이체 완료 화면 보기</label
-                    ><label class="secondary-button" for="step-info"
-                      >이전으로</label
-                    >
-                    <p class="flow-footnote">
-                      실제 송금 없이 완료 화면을 확인할 수 있어요.
-                    </p>
-                  </div>
-                  <div class="flow-panel transfer-done">
-                    <div class="success-symbol" aria-hidden="true">
-                      <svg class="icon" aria-hidden="true">
-                        <use href="#i-check" />
-                      </svg>
-                    </div>
-                    <h2>이체가 완료되었어요</h2>
-                    <p class="supporting">
-                      이서연님에게<br /><strong
-                        ><span class="money-10000">10,000</span
-                        ><span class="money-50000">50,000</span
-                        ><span class="money-100000">100,000</span>원</strong
-                      >을 보냈어요.
-                    </p>
-                    <div class="detail-card">
-                      <dl>
-                        <div class="detail-line">
-                          <dt>받는 은행</dt>
-                          <dd>우리은행</dd>
-                        </div>
-                        <div class="detail-line">
-                          <dt>받는 계좌</dt>
-                          <dd>1002-987-654321</dd>
-                        </div>
-                        <div class="detail-line">
-                          <dt>수수료</dt>
-                          <dd>무료</dd>
-                        </div>
-                        <div class="detail-line total">
-                          <dt>이체 금액</dt>
-                          <dd>
-                            <span class="money-10000">10,000</span
-                            ><span class="money-50000">50,000</span
-                            ><span class="money-100000">100,000</span>원
-                          </dd>
-                        </div>
-                      </dl>
-                    </div>
-                    <label class="primary-button" for="view-home">홈으로</label
-                    ><label class="secondary-button" for="step-info"
-                      >다시 체험하기</label
-                    >
-                    <p class="flow-footnote">
-                      샘플 완료 화면입니다. 실제 이체는 이루어지지 않았어요.
-                    </p>
+                    <div class="owner-result" id="owner-result" hidden></div>
                   </div>
                 </div>
-              </section>
+                <div class="field">
+                  <label class="field-title" id="amount-title" for="amount-input">보낼 금액</label>
+                  <div class="amount-surface" id="amount-surface">
+                    <div class="amount-display">
+                      <input class="amount-input" id="amount-input" type="text" inputmode="numeric" autocomplete="off"
+                        value="0" /><small>원</small>
+                    </div>
+                    <div class="amount-caption" id="amount-caption">출금 가능 금액: -원</div>
+                  </div>
+                  <div class="amount-options" id="amount-options" role="group" aria-labelledby="amount-title">
+                    <button type="button" data-add="10000">+1만</button><button type="button"
+                      data-add="50000">+5만</button><button type="button" data-add="100000">+10만</button><button
+                      type="button" data-action="manual">직접입력</button>
+                  </div>
+                  <p class="field-error" id="amount-error" hidden></p>
+                </div>
+                <div class="fee-row">
+                  <span>이체 수수료</span><strong id="fee-text">무료</strong>
+                </div>
+                <button type="button" class="primary-button" id="btn-to-review" disabled>다음</button>
+                <p class="flow-footnote" id="next-hint"></p>
+              </div>
+              <div class="flow-panel transfer-review">
+                <div class="review-recipient">
+                  <span class="recipient-avatar" id="review-avatar" aria-hidden="true">?</span>
+                  <h2>
+                    <span id="review-owner">-</span>님에게<br /><strong><span
+                        id="review-head-amount">0</span>원</strong>을 보낼까요?
+                  </h2>
+                  <p id="review-bank-account">-</p>
+                </div>
+                <div class="detail-card">
+                  <dl>
+                    <div class="detail-line">
+                      <dt>받는 분</dt>
+                      <dd id="review-bank">-</dd>
+                    </div>
+                    <div class="detail-line">
+                      <dt>계좌 번호</dt>
+                      <dd id="review-accountno">-</dd>
+                    </div>
+                    <div class="detail-line">
+                      <dt>예금주</dt>
+                      <dd id="review-owner-name">-</dd>
+                    </div>
+                    <div class="detail-line">
+                      <dt>출금 계좌</dt>
+                      <dd id="review-from">-</dd>
+                    </div>
+                    <div class="detail-line total">
+                      <dt>이체 금액</dt>
+                      <dd id="review-amount">0원</dd>
+                    </div>
+                  </dl>
+                </div>
+                <button type="button" class="primary-button" id="btn-do-transfer">이체하기</button><label
+                  class="secondary-button" for="step-info">이전으로</label>
+                <p class="flow-footnote" id="review-hint"></p>
+              </div>
+              <div class="flow-panel transfer-done">
+                <div class="success-symbol" aria-hidden="true">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-check" />
+                  </svg>
+                </div>
+                <h2>이체가 완료되었어요</h2>
+                <p class="supporting">
+                  <span id="done-owner">-</span>님에게<br /><strong><span id="done-amount">0</span>원</strong>을 보냈어요.
+                </p>
+                <label class="primary-button" for="view-home">홈으로</label>
+              </div>
+            </div>
+          </section>
 
-              <section
+          <section
                 class="screen history-screen"
                 id="history-screen"
                 aria-labelledby="history-title"
@@ -644,48 +425,6 @@
                   <span id="history-summary">전체 계좌 · 최신순</span>
                 </div>
 
-                <section class="day-group" aria-label="2026-09-07">
-                  <h2 class="day-heading">오늘 · 9월 7일</h2>
-                  <div class="day-transactions">
-                    <details class="transaction-detail out-record">
-                      <summary class="transaction">
-                        <span class="transaction-icon"
-                          ><svg class="icon" aria-hidden="true">
-                            <use href="#i-cup" /></svg></span
-                        ><span class="transaction-info"
-                          ><strong>커피 한 잔</strong
-                          ><small>09:12 · 체크카드</small></span
-                        ><span class="transaction-amount"
-                          >−4,500원<small>4,280,500원</small></span
-                        >
-                      </summary>
-                      <div class="transaction-more">
-                        <dl>
-                          <div class="detail-line">
-                            <dt>거래 계좌</dt>
-                            <dd>WON 주거래 통장</dd>
-                          </div>
-                          <div class="detail-line">
-                            <dt>계좌번호</dt>
-                            <dd>1002-123-456789</dd>
-                          </div>
-                          <div class="detail-line">
-                            <dt>거래일시</dt>
-                            <dd>2026-09-07 09:12</dd>
-                          </div>
-                          <div class="detail-line">
-                            <dt>거래 후 잔액</dt>
-                            <dd>4,280,500원</dd>
-                          </div>
-                          <div class="detail-line">
-                            <dt>상태</dt>
-                            <dd class="status-done">거래 완료</dd>
-                          </div>
-                        </dl>
-                      </div>
-                    </details>
-                  </div>
-                </section>
               <!--
                 서버에서 받아온 거래내역이 들어가는 영역
 
@@ -699,119 +438,106 @@
 
             </section> 
 
-              <section
-                class="screen menu-screen"
-                id="menu-screen"
-                aria-labelledby="menu-title"
-              >
-                <div class="menu-profile">
-                  <span class="profile-badge" aria-hidden="true">김</span>
-                  <div>
-                    <h1 id="menu-title">김민준님</h1>
-                    <p>WON 실습뱅킹과 함께하는 금융 생활</p>
-                  </div>
-                </div>
-                <div class="menu-group">
-                  <h2>나의 금융</h2>
-                  <div class="menu-list">
-                    <label class="menu-link" for="view-home"
-                      ><svg class="icon" aria-hidden="true">
-                        <use href="#i-wallet" /></svg
-                      >내 계좌 조회<svg class="icon" aria-hidden="true">
-                        <use href="#i-chevron" /></svg></label
-                    ><label class="menu-link" for="view-transfer"
-                      ><svg class="icon" aria-hidden="true">
-                        <use href="#i-transfer" /></svg
-                      >계좌이체<svg class="icon" aria-hidden="true">
-                        <use href="#i-chevron" /></svg></label
-                    ><label class="menu-link" for="view-history"
-                      ><svg class="icon" aria-hidden="true">
-                        <use href="#i-list" /></svg
-                      >전체 거래내역<svg class="icon" aria-hidden="true">
-                        <use href="#i-chevron" /></svg
-                    ></label>
-                  </div>
-                </div>
-                <div class="menu-group">
-                  <h2>내 계좌</h2>
-                  <div class="account-list">
-                    <article class="account-card compact">
-                      <span class="bank-icon" aria-hidden="true">W</span>
-                      <div class="account-info">
-                        <h3>WON 주거래 통장</h3>
-                        <p>1002-123-456789</p>
-                      </div>
-                    </article>
-                    <article class="account-card compact">
-                      <span class="bank-icon green" aria-hidden="true"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-save" /></svg
-                      ></span>
-                      <div class="account-info">
-                        <h3>차곡차곡 적금</h3>
-                        <p>1003-245-567890</p>
-                      </div>
-                    </article>
-                    <article class="account-card compact">
-                      <span class="bank-icon purple" aria-hidden="true"
-                        ><svg class="icon" aria-hidden="true">
-                          <use href="#i-plane" /></svg
-                      ></span>
-                      <div class="account-info">
-                        <h3>여행 모으기</h3>
-                        <p>1002-456-789012</p>
-                      </div>
-                    </article>
-                  </div>
-                </div>
-                <div class="menu-group">
-                  <h2>알림</h2>
-                  <div class="menu-notice">
-                    <strong>9월 거래내역을 확인해 보세요.</strong>이번 달 입출금
-                    내역과 거래별 상세 정보를 한곳에서 확인할 수 있어요.
-                  </div>
-                </div>
-                <details class="about-mockup">
-                  <summary>목업 안내</summary>
-                  <p>
-                    계좌와 거래 정보는 모두 예시 데이터입니다. 실제 금융기관과
-                    연결되지 않으며, 이체 화면을 살펴보아도 잔액은 변경되지
-                    않습니다.
-                  </p>
-                  <p>
-                    하단 메뉴로 화면을 바꾸고, 홈의 잔액 숨기기와 거래내역의
-                    입출금 필터를 이용해 보세요.
-                  </p>
-                </details>
-                <p class="menu-version">WON BANKING · DESIGN MOCKUP</p>
-              </section>
+              <section class="screen menu-screen" id="menu-screen" aria-labelledby="menu-title">
+            <div class="menu-profile">
+              <span class="profile-badge" aria-hidden="true">김</span>
+              <div>
+                <h1 id="menu-title">김민준님</h1>
+                <p>WON 실습뱅킹과 함께하는 금융 생활</p>
+              </div>
             </div>
-            <nav class="bottom-nav" aria-label="화면 선택">
-              <label for="view-home"
-                ><svg class="icon" aria-hidden="true"><use href="#i-home" /></svg
-                ><span>홈</span></label
-              ><label for="view-transfer"
-                ><svg class="icon" aria-hidden="true">
-                  <use href="#i-transfer" /></svg
-                ><span>이체</span></label
-              ><label for="view-history"
-                ><svg class="icon" aria-hidden="true"><use href="#i-list" /></svg
-                ><span>거래내역</span></label
-              ><label for="view-menu"
-                ><svg class="icon" aria-hidden="true"><use href="#i-grid" /></svg
-                ><span>전체</span></label
-              >
-            </nav>
-            <div class="home-indicator" aria-hidden="true"></div>
-          </div>
+            <div class="menu-group">
+              <h2>나의 금융</h2>
+              <div class="menu-list">
+                <label class="menu-link" for="view-home"><svg class="icon" aria-hidden="true">
+                    <use href="#i-wallet" />
+                  </svg>내 계좌 조회<svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron" />
+                  </svg></label><label class="menu-link" for="view-transfer"><svg class="icon" aria-hidden="true">
+                    <use href="#i-transfer" />
+                  </svg>계좌이체<svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron" />
+                  </svg></label><label class="menu-link" for="view-history"><svg class="icon" aria-hidden="true">
+                    <use href="#i-list" />
+                  </svg>전체 거래내역<svg class="icon" aria-hidden="true">
+                    <use href="#i-chevron" />
+                  </svg></label>
+              </div>
+            </div>
+            <div class="menu-group">
+              <h2>내 계좌</h2>
+              <div class="account-list">
+                <article class="account-card compact">
+                  <span class="bank-icon" aria-hidden="true">W</span>
+                  <div class="account-info">
+                    <h3>WON 주거래 통장</h3>
+                    <p>1002-123-456789</p>
+                  </div>
+                </article>
+                <article class="account-card compact">
+                  <span class="bank-icon green" aria-hidden="true"><svg class="icon" aria-hidden="true">
+                      <use href="#i-save" />
+                    </svg></span>
+                  <div class="account-info">
+                    <h3>차곡차곡 적금</h3>
+                    <p>1003-245-567890</p>
+                  </div>
+                </article>
+                <article class="account-card compact">
+                  <span class="bank-icon purple" aria-hidden="true"><svg class="icon" aria-hidden="true">
+                      <use href="#i-plane" />
+                    </svg></span>
+                  <div class="account-info">
+                    <h3>여행 모으기</h3>
+                    <p>1002-456-789012</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="menu-group">
+              <h2>알림</h2>
+              <div class="menu-notice">
+                <strong>9월 거래내역을 확인해 보세요.</strong>이번 달 입출금
+                내역과 거래별 상세 정보를 한곳에서 확인할 수 있어요.
+              </div>
+            </div>
+            <details class="about-mockup">
+              <summary>목업 안내</summary>
+              <p>
+                계좌와 거래 정보는 모두 예시 데이터입니다. 실제 금융기관과
+                연결되지 않으며, 이체 화면을 살펴보아도 잔액은 변경되지
+                않습니다.
+              </p>
+              <p>
+                하단 메뉴로 화면을 바꾸고, 홈의 잔액 숨기기와 거래내역의
+                입출금 필터를 이용해 보세요.
+              </p>
+            </details>
+            <p class="menu-version">WON BANKING · DESIGN MOCKUP</p>
+          </section>
         </div>
-        <p class="workspace-footer">
-          샘플 데이터로 구성된 디자인 목업입니다. 실제 금융 거래는 이루어지지
-          않습니다.
-        </p>
-      </main>
+        <nav class="bottom-nav" aria-label="화면 선택">
+          <label for="view-home"><svg class="icon" aria-hidden="true">
+              <use href="#i-home" />
+            </svg><span>홈</span></label><label for="view-transfer"><svg class="icon" aria-hidden="true">
+              <use href="#i-transfer" />
+            </svg><span>이체</span></label><label for="view-history"><svg class="icon" aria-hidden="true">
+              <use href="#i-list" />
+            </svg><span>거래내역</span></label><label for="view-menu"><svg class="icon" aria-hidden="true">
+              <use href="#i-grid" />
+            </svg><span>전체</span></label>
+        </nav>
+        <div class="home-indicator" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="workspace-footer">
+        샘플 데이터로 구성된 디자인 목업입니다. 실제 금융 거래는 이루어지지
+        않습니다.
+      </p>
+    </main>
 
-      <script src="./app-account.js"></script>
-      
-    </body>
-  </html>
+    <script src="recent.js"></script>
+    <script src="transfer.js"></script>
+    <script src="./app-account.js"></script>
+  </body>
+</html>
