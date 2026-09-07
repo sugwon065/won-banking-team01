@@ -858,7 +858,9 @@ svg {
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
 }
+/* 1·2·3 단계 표시는 인디케이터입니다. 클릭으로 검증을 건너뛰지 못하게 막습니다. */
 .flow-progress label {
+  pointer-events: none;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -973,9 +975,61 @@ svg {
   font-size: 15px;
   border-radius: 8px;
 }
-.readonly-account {
+/* 출금 계좌 select */
+.account-select {
   width: 100%;
-  padding: 13px 15px 7px;
+  border: 0;
+  background: transparent;
+  padding: 0 18px 0 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--ink);
+  appearance: none;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, #8996a0 50%),
+    linear-gradient(135deg, #8996a0 50%, transparent 50%);
+  background-position:
+    calc(100% - 9px) calc(50% + 1px),
+    calc(100% - 5px) calc(50% + 1px);
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+}
+/* 받는 은행 select */
+.bank-select {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0 18px 0 0;
+  font-size: 14px;
+  color: var(--ink);
+  appearance: none;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, #8996a0 50%),
+    linear-gradient(135deg, #8996a0 50%, transparent 50%);
+  background-position:
+    calc(100% - 9px) calc(50% + 1px),
+    calc(100% - 5px) calc(50% + 1px);
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+}
+.account-select:focus-visible,
+.bank-select:focus-visible {
+  outline: 3px solid #31a7f1;
+  outline-offset: 3px;
+  border-radius: 5px;
+}
+
+/* 계좌번호 입력 + 확인 버튼 */
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 15px;
+}
+.account-input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 0;
   border: 0;
   background: white;
   font-size: 16px;
@@ -983,18 +1037,52 @@ svg {
   color: var(--ink);
   font-weight: 650;
 }
-.owner-verified {
+.account-input::placeholder {
+  font-size: 13px;
+  font-weight: 400;
+  color: #a8b4be;
+  letter-spacing: 0;
+}
+.account-input:focus-visible {
+  outline: 0;
+}
+.verify-button {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--brand);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.verify-button:hover {
+  background: var(--blue-soft);
+}
+.verify-button:focus-visible {
+  outline: 3px solid #31a7f1;
+  outline-offset: 2px;
+}
+
+/* 예금주 확인 결과 (성공 초록 / 실패 빨강) */
+.owner-result {
   display: flex;
   gap: 5px;
   align-items: center;
   font-size: 13px;
   font-weight: 600;
-  color: var(--green);
   padding: 0 15px 14px;
 }
-.owner-verified .icon {
+.owner-result .icon {
   width: 15px;
   height: 15px;
+}
+.owner-result.is-ok {
+  color: var(--green);
+}
+.owner-result.is-error {
+  color: var(--red);
 }
 .amount-surface {
   background: #f3f8fc;
@@ -1003,11 +1091,47 @@ svg {
   padding: 19px 17px;
 }
 .amount-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
   font-size: 31px;
   font-weight: 750;
   letter-spacing: -1px;
   text-align: right;
   font-variant-numeric: tabular-nums;
+}
+.amount-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: right;
+  font-size: 31px;
+  font-weight: 750;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  padding: 0;
+}
+.amount-input:focus-visible {
+  outline: 0;
+}
+/* 잔액 초과 상태 */
+.amount-surface.is-error {
+  border-color: var(--red);
+  background: #fdf4f4;
+}
+.amount-surface.is-error .amount-input {
+  color: var(--red);
+}
+.amount-surface.is-error .amount-caption {
+  color: var(--red);
+}
+.field-error {
+  margin: 8px 2px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  text-align: right;
 }
 .amount-display small {
   font-size: 20px;
@@ -1025,7 +1149,7 @@ svg {
   gap: 8px;
   margin-top: 11px;
 }
-.amount-options label {
+.amount-options button {
   position: relative;
   display: flex;
   align-items: center;
@@ -1037,26 +1161,25 @@ svg {
   font-size: 14px;
   color: #718391;
   background: #fff;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
 }
-.amount-options label:has(input:checked) {
+.amount-options button:hover {
   border-color: #9bc7e4;
   color: var(--brand);
   background: #f1f8fd;
+}
+.amount-options button:active {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: #e7f2fa;
   font-weight: 700;
 }
-.amount-options label:has(input:focus-visible) {
+.amount-options button:focus-visible {
   outline: 3px solid #31a7f1;
   outline-offset: 3px;
-}
-.money-10000,
-.money-50000,
-.money-100000 {
-  display: none;
-}
-.transfer-screen:has(#amount-10000:checked) .money-10000,
-.transfer-screen:has(#amount-50000:checked) .money-50000,
-.transfer-screen:has(#amount-100000:checked) .money-100000 {
-  display: inline;
 }
 .fee-row {
   display: flex;
@@ -1090,6 +1213,16 @@ svg {
 }
 .primary-button:hover {
   background: var(--deep);
+}
+button.primary-button {
+  cursor: pointer;
+}
+button.primary-button:disabled,
+button.primary-button:disabled:hover {
+  background: #c3d0da;
+  border-color: #c3d0da;
+  color: #f2f6f9;
+  cursor: not-allowed;
 }
 .secondary-button {
   margin-top: 10px;
@@ -1168,7 +1301,8 @@ svg {
 }
 .detail-line.total dd {
   color: var(--brand);
-  font-size: 17px;
+  font-size: 19px;
+  font-weight: 750;
 }
 .transfer-done {
   text-align: center;

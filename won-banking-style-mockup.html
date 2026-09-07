@@ -407,43 +407,126 @@
                     id="history-in" />입금</label><label><input class="sr-only" type="radio" name="history-type"
                     id="history-out" />출금</label>
               </div>
-            </div>
-            <div class="history-month">
-              2026년 9월<span>전체 계좌 · 최신순</span>
-            </div>
-            <section class="day-group" aria-label="2026-09-07">
-              <h2 class="day-heading">오늘 · 9월 7일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail out-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon"><svg class="icon" aria-hidden="true">
-                        <use href="#i-cup" />
-                      </svg></span><span class="transaction-info"><strong>커피 한 잔</strong><small>09:12 ·
-                        체크카드</small></span><span class="transaction-amount">−4,500원<small>4,280,500원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
+              <div class="flow-body">
+                <div class="flow-panel transfer-info">
+                  <h2>누구에게 보낼까요?</h2>
+                  <p class="supporting">받는 분과 보낼 금액을 확인해 주세요.</p>
+                  <div class="field">
+                    <label class="field-title" for="from-account"
+                      >출금 계좌</label
+                    >
+                    <div class="withdraw-account">
+                      <span class="bank-icon" aria-hidden="true">W</span>
+                      <div class="account-info">
+                        <select class="account-select" id="from-account">
+                          <!-- data.js accounts 로 JS가 채웁니다 -->
+                        </select>
+                        <p id="from-balance">출금 가능 -원</p>
                       </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
+                      <svg class="icon" aria-hidden="true">
+                        <use href="#i-wallet" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="field-title" for="recipient-account"
+                      >받는 계좌</label
+                    >
+                    <div class="recipient-card">
+                      <div class="recipient-bank">
+                        <select
+                          class="bank-select"
+                          id="recipient-bank"
+                          aria-label="받는 은행"
+                        >
+                          <!-- 우리 / 국민 / 신한 / 하나 / 카카오뱅크 — JS가 채웁니다 -->
+                        </select>
                       </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-07 09:12</dd>
+                      <div class="account-row">
+                        <input
+                          class="account-input"
+                          id="recipient-account"
+                          type="text"
+                          inputmode="numeric"
+                          autocomplete="off"
+                          maxlength="14"
+                          placeholder="- 없이 숫자만 입력 (예: 1002123456789)"
+                        />
+                        <button
+                          type="button"
+                          class="verify-button"
+                          id="btn-verify"
+                        >
+                          확인
+                        </button>
                       </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>4,280,500원</dd>
+                      <div class="owner-result" id="owner-result" hidden></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label
+                      class="field-title"
+                      id="amount-title"
+                      for="amount-input"
+                      >보낼 금액</label
+                    >
+                    <div class="amount-surface" id="amount-surface">
+                      <div class="amount-display">
+                        <input
+                          class="amount-input"
+                          id="amount-input"
+                          type="text"
+                          inputmode="numeric"
+                          autocomplete="off"
+                          value="0"
+                        /><small>원</small>
                       </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
+                      <div class="amount-caption" id="amount-caption">
+                        출금 가능 금액: -원
                       </div>
-                    </dl>
+                    </div>
+                    <div
+                      class="amount-options"
+                      id="amount-options"
+                      role="group"
+                      aria-labelledby="amount-title"
+                    >
+                      <button type="button" data-add="10000">+1만</button
+                      ><button type="button" data-add="50000">+5만</button
+                      ><button type="button" data-add="100000">+10만</button
+                      ><button type="button" data-action="manual">
+                        직접입력
+                      </button>
+                    </div>
+                    <p class="field-error" id="amount-error" hidden></p>
+                  </div>
+                  <div class="fee-row">
+                    <span>이체 수수료</span><strong id="fee-text">무료</strong>
+                  </div>
+                  <button
+                    type="button"
+                    class="primary-button"
+                    id="btn-to-review"
+                    disabled
+                  >
+                    다음
+                  </button>
+                  <p class="flow-footnote" id="next-hint"></p>
+                </div>
+                <div class="flow-panel transfer-review">
+                  <div class="review-recipient">
+                    <span
+                      class="recipient-avatar"
+                      id="review-avatar"
+                      aria-hidden="true"
+                      >?</span
+                    >
+                    <h2>
+                      <span id="review-owner">-</span>님에게<br /><strong
+                        ><span id="review-head-amount">0</span>원</strong
+                      >을 보낼까요?
+                    </h2>
+                    <p id="review-bank-account">-</p>
                   </div>
                 </details>
               </div>
@@ -461,99 +544,52 @@
                   <div class="transaction-more">
                     <dl>
                       <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
+                        <dt>받는 분</dt>
+                        <dd id="review-bank">-</dd>
                       </div>
                       <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
+                        <dt>계좌 번호</dt>
+                        <dd id="review-accountno">-</dd>
                       </div>
                       <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-06 18:35</dd>
+                        <dt>예금주</dt>
+                        <dd id="review-owner-name">-</dd>
                       </div>
                       <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>4,285,000원</dd>
+                        <dt>출금 계좌</dt>
+                        <dd id="review-from">-</dd>
                       </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
+                      <div class="detail-line total">
+                        <dt>이체 금액</dt>
+                        <dd id="review-amount">0원</dd>
                       </div>
                     </dl>
                   </div>
-                </details>
-              </div>
-            </section>
-            <section class="day-group" aria-label="2026-09-05">
-              <h2 class="day-heading">9월 5일</h2>
-              <div class="day-transactions">
-                <details class="transaction-detail in-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon green"><svg class="icon" aria-hidden="true">
-                        <use href="#i-arrow-in" />
-                      </svg></span><span class="transaction-info"><strong>9월 급여</strong><small>10:00 ·
-                        입금</small></span><span
-                      class="transaction-amount income">+3,200,000원<small>4,335,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>WON 주거래 통장</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1002-123-456789</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-05 10:00</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>4,335,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
+                  <button
+                    type="button"
+                    class="primary-button"
+                    id="btn-do-transfer"
+                  >
+                    이체하기
+                  </button
+                  ><label class="secondary-button" for="step-info"
+                    >이전으로</label
+                  >
+                </div>
+                <div class="flow-panel transfer-done">
+                  <div class="success-symbol" aria-hidden="true">
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-check" />
+                    </svg>
                   </div>
-                </details>
-                <details class="transaction-detail in-record">
-                  <summary class="transaction">
-                    <span class="transaction-icon green"><svg class="icon" aria-hidden="true">
-                        <use href="#i-save" />
-                      </svg></span><span class="transaction-info"><strong>적금 납입</strong><small>09:00 ·
-                        입금</small></span><span
-                      class="transaction-amount income">+300,000원<small>12,000,000원</small></span>
-                  </summary>
-                  <div class="transaction-more">
-                    <dl>
-                      <div class="detail-line">
-                        <dt>거래 계좌</dt>
-                        <dd>차곡차곡 적금</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>계좌번호</dt>
-                        <dd>1003-245-567890</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래일시</dt>
-                        <dd>2026-09-05 09:00</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>거래 후 잔액</dt>
-                        <dd>12,000,000원</dd>
-                      </div>
-                      <div class="detail-line">
-                        <dt>상태</dt>
-                        <dd class="status-done">거래 완료</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </details>
+                  <h2>이체가 완료되었어요</h2>
+                  <p class="supporting">
+                    <span id="done-owner">-</span>님에게<br /><strong
+                      ><span id="done-amount">0</span>원</strong
+                    >을 보냈어요.
+                  </p>
+                  <label class="primary-button" for="view-home">홈으로</label>
+                </div>
               </div>
             </section>
             <section class="day-group" aria-label="2026-09-04">
@@ -769,6 +805,12 @@
         않습니다.
       </p>
     </main>
+    <!-- data.js 는 module.exports(Node 문법)이므로, module 객체를 먼저 만들어 둡니다 -->
+    <script>
+      window.module = { exports: {} };
+    </script>
+    <script src="data.js"></script>
+    <script src="transfer.js"></script>
     <script src="recent.js"></script>
   </body>
 </html>
