@@ -5,6 +5,7 @@ import AppHeader from "./components/common/AppHeader";
 import BottomNav from "./components/common/BottomNav";
 import EmptyView from "./components/common/EmptyView";
 import PhoneFrame from "./components/common/PhoneFrame";
+import MenuScreen from "./components/menu/MenuScreen";
 
 export default function App() {
   const [activeView, setActiveView] = useState("history");
@@ -73,7 +74,16 @@ export default function App() {
           onRetry={retryLoading}
         />
       )}
-      {activeView !== "history" && (
+      {activeView === "menu" && (
+        <MenuScreen
+          accounts={accounts}
+          isLoading={isLoading}
+          error={loadError}
+          onRetry={retryLoading}
+          onNavigate={setActiveView}
+        />
+      )}
+      {(activeView === "home" || activeView === "transfer") && (
         <section aria-labelledby="pending-screen-title">
           <div className="page-intro">
             <h1 id="pending-screen-title">
