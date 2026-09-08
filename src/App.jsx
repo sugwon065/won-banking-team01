@@ -75,7 +75,6 @@ export default function App() {
           <EmptyView message="이 화면은 준비 중입니다." />
         </section>
       )}
-      )}
       </main>
       <BottomNav activePage={activeView} onNavigate={setActiveView} />
     </div>
