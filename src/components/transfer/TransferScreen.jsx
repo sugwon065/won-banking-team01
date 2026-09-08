@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { getAccounts, lookupOwner, createTransfer } from "../../api/banking";
-import TransferProgress from "./TransferProgress";
 import TransferInfoStep from "./TransferInfoStep";
 import TransferReviewStep from "./TransferReviewStep";
 import TransferDoneStep from "./TransferDoneStep";
@@ -171,11 +170,8 @@ export default function TransferScreen({
         <div className="eyebrow">TRANSFER</div>
         <div className="page-title-row">
           <h1 id="transfer-title">계좌이체</h1>
-          <span className="sample-tag">샘플 이체</span>
         </div>
       </div>
-
-      <TransferProgress step={step} />
 
       <div className="flow-body">
         {step === "info" && (

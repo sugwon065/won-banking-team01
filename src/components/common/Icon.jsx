@@ -3,6 +3,7 @@ const paths = {
   home: "m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z",
   transfer: "M4 7h15m-4-4 4 4-4 4M20 17H5m4-4-4 4 4 4",
   bell: "M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4",
+  check: "m5 12 4 4L19 6",
   menu: "M4 6h16M4 12h16M4 18h16",
   chevron: "m9 5 7 7-7 7",
   save: "M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5",

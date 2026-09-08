@@ -8,6 +8,13 @@
    그 차이만 여기서 덮어씁니다.
    ========================================================================== */
 
+/* 화면 자체 표시 — .screen 기본값이 display:none 이라 라디오 없이는 안 보임 */
+.transfer-screen {
+  display: block;
+  height: auto;
+  overflow: visible;
+}
+
 /* 패널 표시 — 라디오가 없어졌으므로 항상 보이게 */
 .transfer-screen .flow-panel {
   display: block;

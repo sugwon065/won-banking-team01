@@ -1,3 +1,5 @@
+import Icon from "../common/Icon";
+
 /* 받는 은행 선택 · 계좌번호 입력 · 예금주 실명조회 결과 */
 export default function RecipientField({
   banks,
@@ -47,7 +49,7 @@ export default function RecipientField({
             inputMode="numeric"
             autoComplete="off"
             maxLength={14}
-            placeholder="- 없이 숫자만 입력 (예: 1002123456789)"
+            placeholder="- 없이 숫자만 입력 (예: 123456789)"
             value={accountNo}
             onChange={(e) => onAccountNoChange(e.target.value.replace(/[^0-9]/g, ""))}
             onKeyDown={handleKeyDown}
@@ -67,9 +69,7 @@ export default function RecipientField({
         )}
         {lookup.status === "ok" && (
           <div className="owner-result is-ok">
-            <svg className="icon" aria-hidden="true">
-              <use href="#i-check" />
-            </svg>
+            <Icon name="check" />
             {lookup.ownerName}님
           </div>
         )}

@@ -27,9 +27,6 @@ export default function TransferInfoStep({
 }) {
   return (
     <div className="flow-panel transfer-info" style={{ display: "block" }}>
-      <h2>누구에게 보낼까요?</h2>
-      <p className="supporting">받는 분과 보낼 금액을 확인해 주세요.</p>
-
       <FromAccountSelect
         accounts={accounts}
         value={fromAccountId}

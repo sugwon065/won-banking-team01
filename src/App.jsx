@@ -8,6 +8,7 @@ import EmptyView from "./components/common/EmptyView";
 import PhoneFrame from "./components/common/PhoneFrame";
 import HomeScreen from "./components/home/HomeScreen";
 import MenuScreen from "./components/menu/MenuScreen";
+import TransferScreen from "./components/transfer/TransferScreen";
 
 export default function App() {
   const [activeView, setActiveView] = useState("history");
@@ -59,18 +60,23 @@ export default function App() {
       {activeView === "menu" && (
         <MenuScreen
           accounts={accounts}
-          isLoading={isLoading}
-          error={loadError}
+          isLoading={accountsLoading || transactionsLoading}
+          error={accountsError || transactionsError}
           onRetry={retryLoading}
           onNavigate={setActiveView}
         />
       )}
-      {activeView !== "history" && activeView !== "home" && activeView !== "menu" && (
+      {activeView === "transfer" && (
+        <TransferScreen
+          accounts={accounts}
+          onTransferComplete={retryLoading}
+          onNavigate={setActiveView}
+        />
+      )}
+      {activeView !== "history" && activeView !== "home" && activeView !== "menu" && activeView !== "transfer" && (
         <section aria-labelledby="pending-screen-title">
           <div className="page-intro">
-            <h1 id="pending-screen-title">
-              {{ transfer: "이체" }[activeView]}
-            </h1>
+            <h1 id="pending-screen-title">준비 중</h1>
           </div>
           <EmptyView message="이 화면은 준비 중입니다." />
         </section>
