@@ -1,0 +1,253 @@
+/* ==========================================================================
+   이체 화면 · React 전환용 스타일
+   won-banking-style.mockup.css 를 수정하지 않고 이 파일만 추가합니다.
+   TransferScreen.jsx 에서 import 하면 됩니다.
+
+   기존 CSS 는 라디오 :checked 로 패널을 보였다 감췄고, 입력 요소가 없는
+   목업이었습니다. React 는 조건부 렌더링과 실제 input/button 을 쓰므로
+   그 차이만 여기서 덮어씁니다.
+   ========================================================================== */
+
+/* 패널 표시 — 라디오가 없어졌으므로 항상 보이게 */
+.transfer-screen .flow-panel {
+  display: block;
+}
+
+/* ── 단계 인디케이터 (label → span) ─────────────────────────────────────── */
+.transfer-screen .flow-progress span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  font-size: 12px;
+  color: #8996a0;
+  white-space: nowrap;
+}
+.transfer-screen .flow-progress span b {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: #e6ebf1;
+  color: #8996a0;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 600;
+}
+.transfer-screen .flow-progress span.is-active {
+  color: var(--brand);
+  font-weight: 600;
+}
+.transfer-screen .flow-progress span.is-active b {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* ── 출금 계좌 / 받는 은행 select ───────────────────────────────────────── */
+.account-select,
+.bank-select {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 0 18px 0 0;
+  font-size: 14px;
+  color: var(--ink);
+  appearance: none;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, #8996a0 50%),
+    linear-gradient(135deg, #8996a0 50%, transparent 50%);
+  background-position:
+    calc(100% - 9px) calc(50% + 1px),
+    calc(100% - 5px) calc(50% + 1px);
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+}
+.account-select {
+  font-weight: 650;
+}
+.account-select:disabled {
+  color: #8996a0;
+  cursor: not-allowed;
+}
+.account-select:focus-visible,
+.bank-select:focus-visible {
+  outline: 3px solid #31a7f1;
+  outline-offset: 3px;
+  border-radius: 5px;
+}
+
+/* ── 계좌번호 입력 + 확인 버튼 ──────────────────────────────────────────── */
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 15px;
+}
+.account-input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 0;
+  border: 0;
+  background: #fff;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+  font-weight: 650;
+}
+.account-input::placeholder {
+  font-size: 13px;
+  font-weight: 400;
+  color: #a8b4be;
+  letter-spacing: 0;
+}
+.account-input:focus-visible {
+  outline: 0;
+}
+.verify-button {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 1px solid var(--brand);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brand);
+  font-size: 13px;
+  font-weight: 650;
+  font-family: inherit;
+  cursor: pointer;
+}
+.verify-button:hover:not(:disabled) {
+  background: var(--blue-soft);
+}
+.verify-button:disabled {
+  border-color: #c3d0da;
+  color: #a8b4be;
+  cursor: progress;
+}
+.verify-button:focus-visible {
+  outline: 3px solid #31a7f1;
+  outline-offset: 2px;
+}
+
+/* ── 예금주 조회 결과 ───────────────────────────────────────────────────── */
+.owner-result {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 15px 14px;
+}
+.owner-result .icon {
+  width: 15px;
+  height: 15px;
+}
+.owner-result.is-ok {
+  color: var(--green);
+}
+.owner-result.is-error {
+  color: var(--red);
+}
+.owner-result.is-loading {
+  color: #8996a0;
+  font-weight: 500;
+}
+
+/* ── 금액 입력 ──────────────────────────────────────────────────────────── */
+.amount-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+.amount-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: right;
+  font-size: 31px;
+  font-weight: 750;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  font-family: inherit;
+  padding: 0;
+}
+.amount-input:focus-visible {
+  outline: 0;
+}
+.amount-surface.is-error {
+  border-color: var(--red);
+  background: #fdf4f4;
+}
+.amount-surface.is-error .amount-input,
+.amount-surface.is-error .amount-caption {
+  color: var(--red);
+}
+.field-error {
+  margin: 8px 2px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red);
+  text-align: right;
+}
+
+/* ── 빠른 금액 버튼 ─────────────────────────────────────────────────────── */
+.amount-options button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  border: 1px solid var(--line);
+  padding: 9px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #718391;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+}
+.amount-options button:hover {
+  border-color: #9bc7e4;
+  color: var(--brand);
+  background: #f1f8fd;
+}
+.amount-options button:active {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: #e7f2fa;
+  font-weight: 700;
+}
+.amount-options button:focus-visible {
+  outline: 3px solid #31a7f1;
+  outline-offset: 3px;
+}
+
+/* ── 주 버튼 · 보조 버튼 (label → button) ───────────────────────────────── */
+.transfer-screen button.primary-button,
+.transfer-screen button.secondary-button {
+  width: 100%;
+  font-family: inherit;
+  cursor: pointer;
+}
+.transfer-screen button.primary-button:disabled,
+.transfer-screen button.primary-button:disabled:hover {
+  background: #c3d0da;
+  border-color: #c3d0da;
+  color: #f2f6f9;
+  cursor: not-allowed;
+}
+
+/* ── 다음 버튼 아래 안내 · 서버 에러 ────────────────────────────────────── */
+.flow-footnote.is-error {
+  color: var(--red);
+  font-weight: 600;
+}
+
+/* ── 이체 금액 강조 ─────────────────────────────────────────────────────── */
+.detail-line.total dd {
+  color: var(--brand);
+  font-size: 19px;
+  font-weight: 750;
+}
