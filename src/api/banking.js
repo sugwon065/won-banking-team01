@@ -1,3 +1,23 @@
+const API_BASE_URL = "http://localhost:4000";
+
+async function request(path, signal) {
+  const response = await fetch(`${API_BASE_URL}${path}`, { signal });
+
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+export function getAccounts(signal) {
+  return request("/api/accounts", signal);
+}
+
+export function getTransactions(signal) {
+  return request("/api/transactions", signal);
+}
+
 /* ==========================================================================
    아래는 이체 화면용으로 추가한 부분입니다. 위 코드는 수정하지 않았습니다.
 
