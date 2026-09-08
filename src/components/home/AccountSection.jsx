@@ -1,7 +1,7 @@
 import AccountCard from "../common/AccountCard";
 import Icon from "../common/Icon";
 
-export default function AccountSection({ accounts, onNavigate }) {
+export default function AccountSection({ accounts, onNavigate, onTransfer }) {
   return (
     <div className="section">
       <div className="section-heading">
@@ -18,7 +18,7 @@ export default function AccountSection({ accounts, onNavigate }) {
       </div>
       <div className="account-list">
         {accounts.map((account) => (
-          <AccountCard key={account.id} account={account} compact />
+          <AccountCard key={account.id} account={account} onTransfer={onTransfer} />
         ))}
       </div>
     </div>

@@ -19,12 +19,13 @@ const NETWORK_MESSAGE =
 
 export default function TransferScreen({
   accounts: accountsProp,
+  initialFromAccountId = "",
   onTransferComplete,
   onNavigate,
 }) {
   /* ── state 7개 ────────────────────────────────────────── */
   const [step, setStep] = useState("info");
-  const [fromAccountId, setFromAccountId] = useState("");
+  const [selectedFromAccountId, setFromAccountId] = useState(initialFromAccountId);
   const [bankName, setBankName] = useState(BANKS[0]);
   const [accountNo, setAccountNo] = useState("");
   const [amount, setAmount] = useState(0);
@@ -51,12 +52,12 @@ export default function TransferScreen({
     return () => controller.abort();
   }, [selfFetch]);
 
-  /* 계좌가 들어오면 첫 계좌를 기본 선택 */
-  useEffect(() => {
-    if (!fromAccountId && accounts.length > 0) {
-      setFromAccountId(accounts[0].id);
-    }
-  }, [accounts, fromAccountId]);
+  /* 홈에서 선택한 계좌를 우선 사용하며, 없으면 첫 이체 가능 계좌를 선택합니다.
+     계좌가 늦게 로드되더라도 선택 ID를 유지합니다. */
+  const transferAccounts = accounts.filter((account) => !String(account.type ?? "").includes("적금"));
+  const fromAccountId = transferAccounts.some((account) => account.id === selectedFromAccountId)
+    ? selectedFromAccountId
+    : transferAccounts[0]?.id ?? "";
 
   /* ── 파생값 (state 로 두지 않음) ──────────────────────── */
   const fromAccount = useMemo(
@@ -82,7 +83,7 @@ export default function TransferScreen({
   }, [amount, maxAmount]);
 
   const canProceed =
-    activeLookup.status === "ok" && amount > 0 && amountError === null;
+    Boolean(fromAccount) && activeLookup.status === "ok" && amount > 0 && amountError === null;
 
   const hint = useMemo(() => {
     if (accountsError) return accountsError;

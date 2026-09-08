@@ -12,6 +12,7 @@ import TransferScreen from "./components/transfer/TransferScreen";
 
 export default function App() {
   const [activeView, setActiveView] = useState("home");
+  const [transferAccountId, setTransferAccountId] = useState("");
   const {
     accounts, isLoading: accountsLoading, error: accountsError, refetchAccounts,
   } = useAccounts();
@@ -36,10 +37,20 @@ export default function App() {
     refetchTransactions();
   }
 
+  function navigate(page) {
+    setTransferAccountId("");
+    setActiveView(page);
+  }
+
+  function transferFromAccount(account) {
+    setTransferAccountId(account.id);
+    setActiveView("transfer");
+  }
+
   return (
     <PhoneFrame>
     <div className="transactions-app">
-      <AppHeader onNavigate={setActiveView} />
+      <AppHeader onNavigate={navigate} />
       <main className="app-content" key={activeView}>
       {activeView === "history" && (
         <TransactionsScreen
@@ -54,7 +65,8 @@ export default function App() {
         <HomeScreen
           accounts={accounts}
           transactions={transactions}
-          onNavigate={setActiveView}
+          onNavigate={navigate}
+          onTransfer={transferFromAccount}
         />
       )}
       {activeView === "menu" && (
@@ -63,14 +75,15 @@ export default function App() {
           isLoading={accountsLoading || transactionsLoading}
           error={accountsError || transactionsError}
           onRetry={retryLoading}
-          onNavigate={setActiveView}
+          onNavigate={navigate}
         />
       )}
       {activeView === "transfer" && (
         <TransferScreen
           accounts={accounts}
+          initialFromAccountId={transferAccountId}
           onTransferComplete={retryLoading}
-          onNavigate={setActiveView}
+          onNavigate={navigate}
         />
       )}
       {activeView !== "history" && activeView !== "home" && activeView !== "menu" && activeView !== "transfer" && (
@@ -82,7 +95,7 @@ export default function App() {
         </section>
       )}
       </main>
-      <BottomNav activePage={activeView} onNavigate={setActiveView} />
+      <BottomNav activePage={activeView} onNavigate={navigate} />
     </div>
     </PhoneFrame>
   );
