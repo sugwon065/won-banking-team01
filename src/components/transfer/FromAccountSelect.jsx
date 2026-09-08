@@ -6,6 +6,7 @@ export default function FromAccountSelect({
   onChange,
 }) {
   const empty = accounts.length === 0;
+  const hasTransferAccount = accounts.some((account) => !String(account.type ?? "").includes("적금"));
 
   return (
     <div className="field">
@@ -21,15 +22,18 @@ export default function FromAccountSelect({
             className="account-select"
             id="from-account"
             value={value}
-            disabled={empty}
+            disabled={!hasTransferAccount}
             onChange={(e) => onChange(e.target.value)}
           >
+            {!empty && !hasTransferAccount && (
+              <option value="">이체 가능한 출금 계좌가 없습니다.</option>
+            )}
             {empty ? (
               <option value="">계좌를 불러오는 중…</option>
             ) : (
               accounts.map((a) => (
-                <option key={a.id} value={a.id}>
-                  {a.nickname} · {a.accountNo}
+                <option key={a.id} value={a.id} disabled={String(a.type ?? "").includes("적금")}>
+                  {a.nickname} · {a.accountNo}{String(a.type ?? "").includes("적금") ? " (적금 · 이체 불가)" : ""}
                 </option>
               ))
             )}
@@ -37,6 +41,7 @@ export default function FromAccountSelect({
           <p>
             {empty
               ? "출금 가능 …"
+              : !hasTransferAccount ? "적금 계좌에서는 이체할 수 없습니다."
               : `출금 가능 ${maxAmount.toLocaleString("ko-KR")}원`}
           </p>
         </div>
