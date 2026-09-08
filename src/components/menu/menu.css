@@ -1,0 +1,21 @@
+/* 기존 목업 스타일을 재사용하며 React 화면 표시와 버튼만 보완합니다. */
+.transactions-app .react-menu-screen {
+  display: block;
+  height: auto;
+  overflow: visible;
+}
+
+.menu-list .menu-link-button {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+}
+
+.menu-list .menu-link-button:last-child { border-bottom: 0; }
+.menu-link-button:disabled { opacity: .5; cursor: not-allowed; }
+.menu-link-button:focus-visible { border-radius: 8px; outline-offset: -3px; }
+.react-menu-screen .account-card.compact { flex-wrap: wrap; }
+.react-menu-screen .account-info { overflow-wrap: anywhere; }
+.react-menu-screen .account-balance { margin-left: auto; }
