@@ -327,10 +327,16 @@
                 aria-labelledby="history-title"
               >
                 <div class="history-top">
-                  <div class="page-intro">
-                    <div class="eyebrow">TRANSACTIONS</div>
-                    <h1 id="history-title">거래내역</h1>
-                    <p>내 계좌의 입출금 내역을 한눈에.</p>
+                  <div class="page-intro history-intro">
+                    <div>
+                      <div class="eyebrow">TRANSACTIONS</div>
+                      <h1 id="history-title">거래내역</h1>
+                      <p>내 계좌의 입출금 내역을 한눈에.</p>
+                    </div>
+                    <label class="history-account-picker">
+                      <span class="sr-only">계좌 선택</span>
+                      <select id="account-tabs" name="history-account" aria-label="계좌 선택"></select>
+                    </label>
                   </div>
                   <div class="history-overview" aria-label="월간 계좌 합계">
                     <div>
@@ -344,23 +350,6 @@
                     </div>
                   </div>
 
-                  <!--
-                    계좌 선택 탭이 들어가는 영역
-
-                    app-account.js가 /api/accounts에서 계좌 목록을 받아온 뒤
-                    이 div 내부에 다음과 같은 탭을 자동으로 생성한다.
-
-                    전체 계좌
-                    우리 첫급여통장
-                    우리 SUPER주거래통장
-                    우리 청년도약계좌
-                  -->
-                  <div
-                    class="history-filter account-filter"
-                    id="account-tabs"
-                    role="group"
-                    aria-label="계좌 선택"
-                  ></div>
                   <div class="history-filter" role="group" aria-label="거래 유형">
                     <label
                       ><input

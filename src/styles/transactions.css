@@ -1,0 +1,44 @@
+.transactions-app {
+  width: min(428px, 100%);
+  min-height: 100svh;
+  margin: 0 auto;
+  background: var(--surface);
+}
+
+.transactions-app .history-screen {
+  display: block;
+  min-height: 100svh;
+}
+
+.transactions-app .history-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.transactions-app .history-account-picker {
+  flex: none;
+  width: 144px;
+}
+
+.transactions-app .history-account-picker select {
+  width: 100%;
+  border: 1px solid #d5e0e8;
+  border-radius: 10px;
+  padding: 9px 30px 9px 10px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.transactions-app .transaction-icon {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.transactions-app .history-hint:last-child {
+  margin-bottom: 0;
+}

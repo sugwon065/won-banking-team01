@@ -1364,6 +1364,27 @@ button.primary-button:disabled:hover {
 .history-top .page-intro {
   padding-bottom: 15px;
 }
+.history-top .history-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.history-account-picker {
+  flex: none;
+  width: 144px;
+}
+.history-account-picker select {
+  width: 100%;
+  border: 1px solid #d5e0e8;
+  border-radius: 10px;
+  padding: 9px 30px 9px 10px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
 .history-overview {
   display: grid;
   grid-template-columns: 1fr 1fr;
