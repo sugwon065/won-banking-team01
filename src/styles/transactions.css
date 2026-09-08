@@ -19,7 +19,8 @@
   padding-bottom: max(4px, env(safe-area-inset-bottom));
 }
 
-.transactions-app .history-screen {
+.transactions-app .history-screen,
+.transactions-app .home-screen {
   display: block;
   height: auto;
   overflow: visible;
@@ -56,4 +57,14 @@
 
 .transactions-app .history-hint:last-child {
   margin-bottom: 0;
+}
+
+.transactions-app .quick-menu button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.3px;
 }

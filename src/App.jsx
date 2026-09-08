@@ -5,6 +5,7 @@ import AppHeader from "./components/common/AppHeader";
 import BottomNav from "./components/common/BottomNav";
 import EmptyView from "./components/common/EmptyView";
 import PhoneFrame from "./components/common/PhoneFrame";
+import HomeScreen from "./components/home/HomeScreen";
 
 export default function App() {
   const [activeView, setActiveView] = useState("history");
@@ -73,7 +74,14 @@ export default function App() {
           onRetry={retryLoading}
         />
       )}
-      {activeView !== "history" && (
+      {activeView === "home" && (
+        <HomeScreen
+          accounts={accounts}
+          transactions={transactions}
+          onNavigate={setActiveView}
+        />
+      )}
+      {activeView !== "history" && activeView !== "home" && (
         <section aria-labelledby="pending-screen-title">
           <div className="page-intro">
             <h1 id="pending-screen-title">
