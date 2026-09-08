@@ -1,62 +1,37 @@
 import { useEffect, useState } from "react";
-import { getAccounts, getTransactions } from "./api/banking";
+import useAccounts from "./hooks/useAccounts";
+import useTransactions from "./hooks/useTransactions";
 import TransactionsScreen from "./screens/TransactionsScreen";
 import AppHeader from "./components/common/AppHeader";
 import BottomNav from "./components/common/BottomNav";
 import EmptyView from "./components/common/EmptyView";
 import PhoneFrame from "./components/common/PhoneFrame";
+import MenuScreen from "./components/menu/MenuScreen";
 
 export default function App() {
   const [activeView, setActiveView] = useState("history");
-  const [reloadKey, setReloadKey] = useState(0);
-  const [accounts, setAccounts] = useState([]);
-  const [transactions, setTransactions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadError, setLoadError] = useState(null);
+  const {
+    accounts, isLoading: accountsLoading, error: accountsError, refetchAccounts,
+  } = useAccounts();
+  const {
+    transactions, isLoading: transactionsLoading, error: transactionsError, refetchTransactions,
+  } = useTransactions();
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadBankingData() {
-      try {
-        const [loadedAccounts, loadedTransactions] = await Promise.all([
-          getAccounts(controller.signal),
-          getTransactions(controller.signal),
-        ]);
-
-        if (controller.signal.aborted) return;
-        setAccounts(Array.isArray(loadedAccounts) ? loadedAccounts : []);
-        setTransactions(Array.isArray(loadedTransactions) ? loadedTransactions : []);
-      } catch (error) {
-        if (error.name !== "AbortError") {
-          console.error("Failed to load banking data:", error);
-          setLoadError(error);
-        }
-      } finally {
-        if (!controller.signal.aborted) {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    loadBankingData();
     function handleTransferCompleted() {
-      setIsLoading(true);
-      setLoadError(null);
-      setReloadKey((key) => key + 1);
+      refetchAccounts();
+      refetchTransactions();
     }
     document.addEventListener("transfer:completed", handleTransferCompleted);
 
     return () => {
       document.removeEventListener("transfer:completed", handleTransferCompleted);
-      controller.abort();
     };
-  }, [reloadKey]);
+  }, [refetchAccounts, refetchTransactions]);
 
   function retryLoading() {
-    setIsLoading(true);
-    setLoadError(null);
-    setReloadKey((key) => key + 1);
+    refetchAccounts();
+    refetchTransactions();
   }
 
   return (
@@ -68,12 +43,21 @@ export default function App() {
         <TransactionsScreen
           accounts={accounts}
           transactions={transactions}
-          isLoading={isLoading}
-          error={loadError}
+          isLoading={accountsLoading || transactionsLoading}
+          error={accountsError || transactionsError}
           onRetry={retryLoading}
         />
       )}
-      {activeView !== "history" && (
+      {activeView === "menu" && (
+        <MenuScreen
+          accounts={accounts}
+          isLoading={accountsLoading}
+          error={accountsError}
+          onRetry={refetchAccounts}
+          onNavigate={setActiveView}
+        />
+      )}
+      {(activeView === "home" || activeView === "transfer") && (
         <section aria-labelledby="pending-screen-title">
           <div className="page-intro">
             <h1 id="pending-screen-title">
