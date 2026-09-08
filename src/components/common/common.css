@@ -1,0 +1,76 @@
+/* 기존 won-banking-style.mockup.css와 함께 사용하는 React 공통 UI 보완 스타일 */
+.common-icon-action {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.bottom-nav .common-nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 57px;
+  padding: 7px 2px 3px;
+  border: 0;
+  background: transparent;
+  color: #86939f;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.bottom-nav .common-nav-item::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 31px;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+.bottom-nav .common-nav-item[aria-current="page"] { color: var(--brand); }
+.bottom-nav .common-nav-item[aria-current="page"]::before { background: var(--blue-soft); }
+.common-nav-item:focus-visible,
+.common-icon-action:focus-visible {
+  outline: 3px solid #31a7f1;
+  outline-offset: -3px;
+  border-radius: 12px;
+}
+
+.common-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+}
+.common-error { color: var(--red, #b42318); }
+.common-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--line, #e4ebf1);
+  border-top-color: var(--brand, #0067ac);
+  border-radius: 50%;
+  animation: common-spin 0.8s linear infinite;
+}
+@keyframes common-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .common-spinner { animation: none; }
+}
+.common-icon-action:disabled,
+.common-nav-item:disabled,
+.common-state button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

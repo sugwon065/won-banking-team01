@@ -1,17 +1,20 @@
 import { useState } from "react";
 import AccountTabs from "../components/AccountTabs";
-import TransactionDetailContent from "../components/TransactionDetailContent";
-import TransactionRow from "../components/TransactionRow";
+import TransactionDetailContent from "../components/common/TransactionDetailContent";
+import TransactionRow from "../components/common/TransactionRow";
+import Spinner from "../components/common/Spinner";
+import ErrorView from "../components/common/ErrorView";
+import EmptyView from "../components/common/EmptyView";
+import Money from "../components/common/Money";
 import {
   calculateMonthlyOverview,
   filterTransactions,
   formatDayHeading,
-  formatWon,
   getAccountById,
   groupTransactionsByDate,
 } from "../utils/transactions";
 
-export default function TransactionsScreen({ accounts, transactions, isLoading, error }) {
+export default function TransactionsScreen({ accounts, transactions, isLoading, error, onRetry }) {
   const [selectedAccountId, setSelectedAccountId] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [openTxId, setOpenTxId] = useState(null);
@@ -47,11 +50,11 @@ export default function TransactionsScreen({ accounts, transactions, isLoading, 
         <div className="history-overview" aria-label="월간 계좌 합계">
           <div>
             <p>이번 달 입금</p>
-            <strong className="in-total">{formatWon(overview.totalIn)}</strong>
+            <strong className="in-total"><Money amount={overview.totalIn} /></strong>
           </div>
           <div>
             <p>이번 달 출금</p>
-            <strong>{formatWon(overview.totalOut)}</strong>
+            <strong><Money amount={overview.totalOut} /></strong>
           </div>
         </div>
         <div className="history-filter" role="group" aria-label="거래 유형">
@@ -76,10 +79,10 @@ export default function TransactionsScreen({ accounts, transactions, isLoading, 
         <span>{summary}</span>
       </div>
 
-      {isLoading && <p className="history-hint">거래내역을 불러오는 중입니다.</p>}
-      {!isLoading && error && <p className="history-hint">거래내역을 불러오지 못했습니다.</p>}
+      {isLoading && <Spinner message="거래내역을 불러오는 중입니다." />}
+      {!isLoading && error && <ErrorView message="거래내역을 불러오지 못했습니다." onRetry={onRetry} />}
       {!isLoading && !error && visibleTransactions.length === 0 && (
-        <p className="history-hint">조건에 맞는 거래내역이 없습니다.</p>
+        <EmptyView message="조건에 맞는 거래내역이 없습니다." />
       )}
       {!isLoading && !error && Array.from(groupedTransactions.entries()).map(([date, dailyTransactions]) => (
         <section className="day-group" aria-label={date} key={date}>
@@ -94,10 +97,13 @@ export default function TransactionsScreen({ accounts, transactions, isLoading, 
                   className={`transaction-detail ${transaction.type === "in" ? "in-record" : "out-record"}`}
                   key={transaction.id}
                   open={isOpen}
-                  onToggle={(event) => setOpenTxId(event.currentTarget.open ? transaction.id : null)}
+                  onToggle={(event) => {
+                    const isOpen = event.currentTarget.open;
+                    setOpenTxId((current) => isOpen ? transaction.id : current === transaction.id ? null : current);
+                  }}
                 >
                   <summary className="transaction">
-                    <TransactionRow transaction={transaction} />
+                    <TransactionRow transaction={transaction} contentOnly showBalance showDate={false} />
                   </summary>
                   <TransactionDetailContent transaction={transaction} account={account} />
                 </details>
