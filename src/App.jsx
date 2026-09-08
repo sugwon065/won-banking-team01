@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useAccounts from "./hooks/useAccounts";
 import useTransactions from "./hooks/useTransactions";
-import TransactionsScreen from "./screens/TransactionsScreen";
+import TransactionsScreen from "./components/transactions/TransactionsScreen";
 import AppHeader from "./components/common/AppHeader";
 import BottomNav from "./components/common/BottomNav";
 import EmptyView from "./components/common/EmptyView";
@@ -11,7 +11,7 @@ import MenuScreen from "./components/menu/MenuScreen";
 import TransferScreen from "./components/transfer/TransferScreen";
 
 export default function App() {
-  const [activeView, setActiveView] = useState("history");
+  const [activeView, setActiveView] = useState("home");
   const {
     accounts, isLoading: accountsLoading, error: accountsError, refetchAccounts,
   } = useAccounts();

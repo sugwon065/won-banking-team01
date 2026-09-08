@@ -44,16 +44,14 @@ export function formatDayHeading(dateString) {
   return `${month}월 ${day}일`;
 }
 
-export function calculateMonthlyOverview(transactions) {
-  if (transactions.length === 0) {
-    return { monthLabel: "거래내역", totalIn: 0, totalOut: 0 };
-  }
-
-  const latestDate = transactions[0].date;
-  const targetMonth = latestDate.slice(0, 7);
-  const [year, month] = targetMonth.split("-");
+// 최초 조회와 이체 후 재조회 모두 브라우저의 현재 연월을 기준으로 집계합니다.
+// 기준일을 전달하면 월 경계와 연도 경계도 같은 함수로 검증할 수 있습니다.
+export function calculateMonthlyOverview(transactions, now = new Date()) {
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  const targetMonth = `${year}-${String(month).padStart(2, "0")}`;
   const monthlyTransactions = transactions.filter((transaction) => (
-    transaction.date.startsWith(targetMonth)
+    transaction.date.slice(0, 7) === targetMonth
   ));
 
   return monthlyTransactions.reduce((overview, transaction) => {
@@ -65,7 +63,7 @@ export function calculateMonthlyOverview(transactions) {
 
     return overview;
   }, {
-    monthLabel: `${year}년 ${Number(month)}월`,
+    monthLabel: `${year}년 ${month}월`,
     totalIn: 0,
     totalOut: 0,
   });
