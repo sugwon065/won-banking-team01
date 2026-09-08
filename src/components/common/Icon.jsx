@@ -24,6 +24,9 @@ export default function Icon({ name, className = "" }) {
         <rect x="14" y="3" width="7" height="7" rx="2" />
         <rect x="3" y="14" width="7" height="7" rx="2" />
         <rect x="14" y="14" width="7" height="7" rx="2" />
+      </> : name === "eye" ? <>
+        <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
       </> : <path d={paths[name] ?? paths.menu} />}
     </svg>
   );

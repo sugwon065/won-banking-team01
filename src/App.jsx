@@ -6,6 +6,7 @@ import AppHeader from "./components/common/AppHeader";
 import BottomNav from "./components/common/BottomNav";
 import EmptyView from "./components/common/EmptyView";
 import PhoneFrame from "./components/common/PhoneFrame";
+import HomeScreen from "./components/home/HomeScreen";
 import MenuScreen from "./components/menu/MenuScreen";
 
 export default function App() {
@@ -48,24 +49,32 @@ export default function App() {
           onRetry={retryLoading}
         />
       )}
-      {activeView === "menu" && (
-        <MenuScreen
+      {activeView === "home" && (
+        <HomeScreen
           accounts={accounts}
-          isLoading={accountsLoading}
-          error={accountsError}
-          onRetry={refetchAccounts}
+          transactions={transactions}
           onNavigate={setActiveView}
         />
       )}
-      {(activeView === "home" || activeView === "transfer") && (
+      {activeView === "menu" && (
+        <MenuScreen
+          accounts={accounts}
+          isLoading={isLoading}
+          error={loadError}
+          onRetry={retryLoading}
+          onNavigate={setActiveView}
+        />
+      )}
+      {activeView !== "history" && activeView !== "home" && activeView !== "menu" && (
         <section aria-labelledby="pending-screen-title">
           <div className="page-intro">
             <h1 id="pending-screen-title">
-              {{ home: "홈", transfer: "이체", menu: "전체 메뉴" }[activeView]}
+              {{ transfer: "이체" }[activeView]}
             </h1>
           </div>
           <EmptyView message="이 화면은 준비 중입니다." />
         </section>
+      )}
       )}
       </main>
       <BottomNav activePage={activeView} onNavigate={setActiveView} />
