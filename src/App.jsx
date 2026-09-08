@@ -59,9 +59,9 @@ export default function App() {
       {activeView === "menu" && (
         <MenuScreen
           accounts={accounts}
-          isLoading={isLoading}
-          error={loadError}
-          onRetry={retryLoading}
+          isLoading={accountsLoading}
+          error={accountsError}
+          onRetry={refetchAccounts}
           onNavigate={setActiveView}
         />
       )}
