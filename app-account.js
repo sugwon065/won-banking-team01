@@ -119,9 +119,9 @@ let selectedType = "all";
 
 // 계좌 탭이 들어갈 공간.
 //
-// HTML:
-//
-// <div id="account-tabs"></div>
+  // HTML:
+  //
+  // <select id="account-tabs" name="history-account"></select>
 //
 const accountTabs = document.querySelector("#account-tabs");
 
@@ -363,21 +363,10 @@ function renderAccountTabs() {
   }
 
 
-  // ---------------------------------------------------------------
-  // 전체 계좌 탭
-  // ---------------------------------------------------------------
-
   let html = `
-    <label>
-      <input
-        class="sr-only"
-        type="radio"
-        name="history-account"
-        value="all"
-        ${selectedAccount === "all" ? "checked" : ""}
-      />
+    <option value="all" ${selectedAccount === "all" ? "selected" : ""}>
       전체 계좌
-    </label>
+    </option>
   `;
 
 
@@ -399,17 +388,12 @@ function renderAccountTabs() {
     .map((account) => {
 
       return `
-        <label>
-          <input
-            class="sr-only"
-            type="radio"
-            name="history-account"
-            value="${escapeHTML(account.id)}"
-            ${selectedAccount === account.id ? "checked" : ""}
-          />
-
+        <option
+          value="${escapeHTML(account.id)}"
+          ${selectedAccount === account.id ? "selected" : ""}
+        >
           ${escapeHTML(account.nickname)}
-        </label>
+        </option>
       `;
 
     })
@@ -1444,7 +1428,33 @@ function setupHistoryRefreshEvent() {
 
 
 // =====================================================================
-// 21. 최초 실행 함수
+// 21. 이체 완료 후 거래내역 갱신
+// =====================================================================
+//
+// transfer.js는 이체가 성공하면 transfer:completed 이벤트를 발생시킨다.
+// 이 이벤트를 받아 합계와 목록을 함께 다시 조회해야 이체 직후에도
+// 거래내역 화면의 금액이 최신 상태로 유지된다.
+// =====================================================================
+
+
+function setupTransferCompletedEvent() {
+
+  document.addEventListener(
+    "transfer:completed",
+    async () => {
+
+      await Promise.all([
+        loadOverview(),
+        loadTransactions(),
+      ]);
+
+    }
+  );
+}
+
+
+// =====================================================================
+// 22. 최초 실행 함수
 // =====================================================================
 //
 // 페이지가 처음 열렸을 때 필요한 작업을 순서대로 수행한다.
@@ -1479,6 +1489,10 @@ async function initAccount() {
 
     // 거래내역 화면 진입 시 새로고침 이벤트
     setupHistoryRefreshEvent();
+
+
+    // 이체 성공 시 합계와 거래내역을 즉시 갱신
+    setupTransferCompletedEvent();
 
 
     // ---------------------------------------------------------------
@@ -1525,7 +1539,7 @@ async function initAccount() {
 
 
 // =====================================================================
-// 22. app-account.js 시작
+// 23. app-account.js 시작
 // =====================================================================
 //
 // 위에서 함수들을 정의만 해두었기 때문에

@@ -67,6 +67,8 @@
       });
       const body = await res.json().catch(() => ({}));
 
+      console.log(body);
+
       if (res.ok) {
         return {
           ok: true,
